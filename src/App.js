@@ -2,21 +2,17 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import logo from "./images/FunPop_logo.png";
 import "./App.css";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   home = () => {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-      </div>
-    );
+    return <div>Hello FunPop! WORLD</div>;
   };
 
   render() {
     return (
       <Router>
+        <NavBar />
         <Route path="/" exact component={this.home} />
       </Router>
     );
