@@ -16,7 +16,7 @@ class App extends Component {
       hasMore: true
     };
 
-    this.index = 100;
+    this.index = 20;
   }
 
   componentDidMount() {
@@ -40,12 +40,15 @@ class App extends Component {
       this.setState({ hasMore: false });
       return;
     }
-    this.setState({
-      selection: this.state.selection.concat(
-        this.state.funkos.slice(this.index, this.index + 100)
-      )
-    });
-    this.index = this.index + 100;
+
+    setTimeout(() => {
+      this.setState({
+        selection: this.state.selection.concat(
+          this.state.funkos.slice(this.index, this.index + 20)
+        )
+      });
+      this.index = this.index + 20;
+    }, 1500);
   };
 
   ////// ------------- routes ------------------- /////////////

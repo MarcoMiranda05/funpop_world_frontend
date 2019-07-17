@@ -6,10 +6,21 @@ class FunkoCard extends Component {
   };
 
   render() {
-    const { name } = this.props.funko;
+    const {
+      name,
+      fandom,
+      image_url,
+      release_date,
+      category
+    } = this.props.funko;
     return (
-      <div>
-        <h2>{name}</h2>
+      <div className="funko-card">
+        <img className="funko-img" src={image_url} alt={name} />
+        <div className="gradient" />
+        <div className="funko-details">
+          <h3>{name}</h3>
+          <h4>{fandom}</h4>
+        </div>
       </div>
     );
   }
