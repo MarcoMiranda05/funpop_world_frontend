@@ -15,10 +15,10 @@ const NavBar = props => {
           <img src={logo} alt="logo" className="logo" />
         </li>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">home</Link>
         </li>
         <li className="categories">
-          <a className="dropbtn">Categories</a>
+          <a className="dropbtn">categories</a>
           <div className="categories-content">
             <a value="Link 1">Link 1</a>
             <a value="Link 1">Link 2</a>

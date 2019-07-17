@@ -30,8 +30,8 @@ li {
 
 li a,
 .dropbtn {
-  font-weight: bold;
-  font-size: 18px;
+  font-family: "Knewave", cursive;
+  font-size: 20px;
   display: block;
   color: white;
   text-align: center;
