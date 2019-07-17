@@ -17,7 +17,9 @@ class App extends Component {
       currentUser: {},
       username: "",
       password: "",
-      logged_in: false
+      logged_in: false,
+      collection: [],
+      wishlist: []
     };
 
     this.index = 20;
@@ -36,7 +38,10 @@ class App extends Component {
         this.setState({
           logged_in: true,
           username: user.username,
-          currentUser: user
+          currentUser: user,
+          password: "",
+          collection: user.collections,
+          wishlist: user.wishlists
         });
       });
     }
@@ -64,7 +69,10 @@ class App extends Component {
             this.setState({
               logged_in: true,
               username: user.username,
-              currentUser: user
+              currentUser: user,
+              password: "",
+              collection: user.collections,
+              wishlist: user.wishlists
             });
           });
         }
