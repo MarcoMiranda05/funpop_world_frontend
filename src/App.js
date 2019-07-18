@@ -17,7 +17,7 @@ class App extends Component {
       currentUser: {},
       username: "",
       password: "",
-      logged_in: false,
+      loggedIn: false,
       collection: [],
       wishlist: []
     };
@@ -36,7 +36,7 @@ class App extends Component {
     if (token) {
       api.getCurrentUser(token).then(user => {
         this.setState({
-          logged_in: true,
+          loggedIn: true,
           username: user.username,
           currentUser: user,
           password: "",
@@ -67,7 +67,7 @@ class App extends Component {
         if (token) {
           api.getCurrentUser(token).then(user => {
             this.setState({
-              logged_in: true,
+              loggedIn: true,
               username: user.username,
               currentUser: user,
               password: "",
@@ -83,10 +83,12 @@ class App extends Component {
   handleLogOut = () => {
     localStorage.clear("token");
     this.setState({
-      logged_in: false,
+      loggedIn: false,
       username: "",
       password: "",
-      currentUser: {}
+      currentUser: {},
+      collection: [],
+      wishlist: []
     });
   };
 
@@ -127,7 +129,7 @@ class App extends Component {
     return (
       <Router>
         <NavBar
-          logged_in={this.state.logged_in}
+          loggedIn={this.state.loggedIn}
           onLoginClicked={this.onLoginClicked}
           handleLogOut={this.handleLogOut}
           currentUser={this.state.currentUser}
