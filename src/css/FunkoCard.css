@@ -16,6 +16,14 @@
   background-color: white;
 }
 
+.funko-card:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  transition: 0.5s ease;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 .funko-img {
   width: 80%;
   height: 100%;
