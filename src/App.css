@@ -1,2 +1,6 @@
 @import "./css/NavBar.css";
 @import "./css/FunkoCard.css";
+
+* {
+  background-color: #272424;
+}
