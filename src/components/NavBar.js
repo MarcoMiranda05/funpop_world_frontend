@@ -9,10 +9,28 @@ import logo from "../images/FunPop_logo.png";
 class NavBar extends Component {
   toggleSingInOut = () => {
     return this.props.loggedIn ? (
-      <div>
-        <p> {`Welcome, ${this.props.username}`}</p>
-        <button onClick={this.props.handleLogOut}>Log out</button>
-      </div>
+      <React.Fragment>
+        <li className="nav-item">
+          <NavLink
+            exact
+            className="nav-link"
+            to="/"
+            onClick={this.props.handleLogOut}
+          >
+            log out
+          </NavLink>
+        </li>
+        <li className="my-page">
+          <Link to={`/users/${this.props.currentUser.id}`}>my page</Link>
+        </li>
+        <li className="login">
+          <div>
+            <li className="welcome">welcome,</li>
+            <li className="name">{this.props.currentUser.username}</li>
+            <li className="exclamation">!</li>
+          </div>
+        </li>
+      </React.Fragment>
     ) : (
       <form>
         <label htmlFor="username">Username:</label>
@@ -43,7 +61,7 @@ class NavBar extends Component {
           <li>
             <img src={logo} alt="logo" className="logo" />
           </li>
-          <li>
+          <li className="home">
             <Link to="/">home</Link>
           </li>
           <li className="categories">

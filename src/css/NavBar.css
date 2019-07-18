@@ -10,6 +10,7 @@
 .logo {
   width: 185px;
   background-color: #333;
+  float: left;
 }
 
 ul {
@@ -28,7 +29,6 @@ ul {
 }
 
 li {
-  float: left;
   background-color: #333;
 }
 
@@ -52,6 +52,7 @@ li a:hover,
 
 li.categories {
   display: block;
+  float: left;
 }
 
 .categories-content {
@@ -76,6 +77,10 @@ li.categories {
   cursor: pointer;
 }
 
+.home {
+  float: left;
+}
+
 .categories:hover .categories-content {
   display: block;
 }
@@ -86,4 +91,69 @@ li.categories {
 
 .navbar p {
   background-color: #333;
+}
+
+.login {
+  float: right;
+  display: inline-block;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 25px 16px;
+  text-decoration: none;
+}
+
+button {
+  border-radius: 12px;
+  padding: 6px 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover,
+.navbar {
+  background-color: #ed5941;
+}
+
+.welcome {
+  color: #ed5941;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.name {
+  color: white;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.exclamation {
+  color: #ed5941;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.nav-item {
+  float: right;
+  margin-right: 15px;
+}
+
+.my-page {
+  float: right;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.my-page:hover {
+  background-color: #ed5941;
+  cursor: pointer;
 }
