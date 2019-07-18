@@ -109,7 +109,9 @@ button {
   padding: 6px 10px;
   margin-top: 10px;
   margin-right: 5px;
-  font-size: 12px;
+  display: inline-block;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
   border: none;
   cursor: pointer;
   outline: none;
@@ -117,11 +119,11 @@ button {
 
 button:hover,
 .navbar {
-  background-color: #ed5941;
+  background-color: #d33531;
 }
 
 .welcome {
-  color: #ed5941;
+  color: #d33531;
   padding: 0px;
   margin-right: 5px;
   display: inline;
@@ -135,7 +137,7 @@ button:hover,
 }
 
 .exclamation {
-  color: #ed5941;
+  color: #d33531;
   padding: 0px;
   margin-right: 5px;
   display: inline;
@@ -154,6 +156,69 @@ button:hover,
 }
 
 .my-page:hover {
-  background-color: #ed5941;
+  background-color: #d33531;
   cursor: pointer;
+}
+
+.login-form {
+  background-color: #333;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 25px;
+  float: right;
+  display: inline-block;
+}
+
+.login-form input {
+  background-color: white;
+  border-radius: 12px;
+  margin-right: 2px;
+  margin-bottom: 20px;
+  height: 20px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.login-form input:focus {
+  outline: 0;
+}
+
+.login-form label {
+  background-color: #333;
+  color: white;
+  margin-right: 2px;
+  margin-left: 10px;
+}
+
+.login-btn {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+  background-color: #333;
+}
+
+.login-btn:hover {
+  background-color: #d33531;
+}
+.signup-btn {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+  background-color: #333;
+}
+
+.signup-btn:hover {
+  background-color: #d33531;
 }

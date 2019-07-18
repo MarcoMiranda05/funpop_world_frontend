@@ -32,25 +32,30 @@ class NavBar extends Component {
         </li>
       </React.Fragment>
     ) : (
-      <form>
-        <label htmlFor="username">Username:</label>
-        <input
-          onChange={this.props.handleChange}
-          id="username"
-          type="text"
-          name="username"
-          value={this.props.username}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          onChange={this.props.handleChange}
-          id="password"
-          type="password"
-          name="password"
-          value={this.props.password}
-        />
-        <button onClick={this.props.onLoginClicked}>Log in</button>
-      </form>
+      <React.Fragment>
+        <li className="signup-btn">sign up</li>
+        <li className="login-btn" onClick={this.props.onLoginClicked}>
+          login
+        </li>
+        <form className="login-form">
+          <label htmlFor="username">username:</label>
+          <input
+            onChange={this.props.handleChange}
+            id="username"
+            type="text"
+            name="username"
+            value={this.props.username}
+          />
+          <label htmlFor="password">password:</label>
+          <input
+            onChange={this.props.handleChange}
+            id="password"
+            type="password"
+            name="password"
+            value={this.props.password}
+          />
+        </form>
+      </React.Fragment>
     );
   };
 
@@ -73,35 +78,7 @@ class NavBar extends Component {
             </div>
           </li>
           <li>
-            <div className="nav">
-              {this.toggleSingInOut()}
-              {/* {this.props.logged_in ? (
-                <div>
-                  <p> {`Welcome, ${this.props.username}`}</p>
-                  <button onClick={this.props.handleLogOut}>Log out</button>
-                </div>
-              ) : (
-                <form>
-                  <label htmlFor="username">Username:</label>
-                  <input
-                    onChange={this.props.handleChange}
-                    id="username"
-                    type="text"
-                    name="username"
-                    value={this.props.username}
-                  />
-                  <label htmlFor="password">Password:</label>
-                  <input
-                    onChange={this.props.handleChange}
-                    id="password"
-                    type="password"
-                    name="password"
-                    value={this.props.password}
-                  />
-                  <button onClick={this.props.onLoginClicked}>Log in</button>
-                </form>
-              )} */}
-            </div>
+            <div className="nav">{this.toggleSingInOut()}</div>
           </li>
         </ul>
       </div>
