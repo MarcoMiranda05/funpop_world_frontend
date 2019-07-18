@@ -33,7 +33,9 @@ class NavBar extends Component {
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <li className="signup-btn">sign up</li>
+        <li className="signup-btn">
+          <NavLink to="/signup-form"> sign up</NavLink>
+        </li>
         <li className="login-btn" onClick={this.props.onLoginClicked}>
           login
         </li>

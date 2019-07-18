@@ -208,11 +208,9 @@ button:hover,
 }
 .signup-btn {
   font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 20px;
   display: block;
   color: white;
   text-align: center;
-  padding: 25px;
   text-decoration: none;
   cursor: pointer;
   float: right;

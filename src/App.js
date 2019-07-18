@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import SignUpForm from "./components/SignUpForm";
 import FunkosCardContainer from "./containers/FunkosCardContainer";
 import api from "./util/api";
 
@@ -10,7 +11,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      // funkos: Array.from({ length: 20 })
       funkos: [],
       selection: [],
       hasMore: true,
@@ -47,13 +47,15 @@ class App extends Component {
     }
   }
 
-  ////// ------------- get current user ------------------- /////////////
+  ////// ------------- handle change ------------------- /////////////
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  ////// ------------- get current user ------------------- /////////////
 
   onLoginClicked = e => {
     e.preventDefault();
@@ -125,6 +127,12 @@ class App extends Component {
     );
   };
 
+  signUpForm = props => {
+    return <SignUpForm />;
+  };
+
+  ////// ------------- render method ------------------- /////////////
+
   render() {
     return (
       <Router>
@@ -137,7 +145,10 @@ class App extends Component {
           username={this.state.username}
           handleChange={this.handleChange}
         />
-        <Route path="/" exact component={this.home} />
+        <div id="content">
+          <Route path="/" exact component={this.home} />
+          <Route path="/signup-form" component={this.signUpForm} />
+        </div>
       </Router>
     );
   }

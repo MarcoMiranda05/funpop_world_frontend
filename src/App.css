@@ -1,5 +1,6 @@
 @import "./css/NavBar.css";
 @import "./css/FunkoCard.css";
+@import "./css/SignUpForm.css";
 
 * {
   background-color: #272424;
