@@ -23,8 +23,17 @@ const getCurrentUser = token => {
   }).then(res => res.json());
 };
 
+const createUser = newUser => {
+  return fetch(`${API}/api/v1/users`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(newUser)
+  }).then(res => res.json());
+};
+
 export default {
   fetchFunkos,
   login,
-  getCurrentUser
+  getCurrentUser,
+  createUser
 };

@@ -31,7 +31,33 @@ class App extends Component {
       .then(data =>
         this.setState({ funkos: data, selection: data.slice(0, this.index) })
       );
+    this.handleCurrentUser();
+    // const token = localStorage.getItem("token");
+    // if (token) {
+    //   api.getCurrentUser(token).then(user => {
+    //     this.setState({
+    //       loggedIn: true,
+    //       username: user.username,
+    //       currentUser: user,
+    //       password: "",
+    //       collection: user.collections,
+    //       wishlist: user.wishlists
+    //     });
+    //   });
+    // }
+  }
 
+  ////// ------------- handle change ------------------- /////////////
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  ////// ------------- get current user ------------------- /////////////
+
+  handleCurrentUser = () => {
     const token = localStorage.getItem("token");
     if (token) {
       api.getCurrentUser(token).then(user => {
@@ -45,17 +71,7 @@ class App extends Component {
         });
       });
     }
-  }
-
-  ////// ------------- handle change ------------------- /////////////
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
   };
-
-  ////// ------------- get current user ------------------- /////////////
 
   onLoginClicked = e => {
     e.preventDefault();
@@ -128,7 +144,7 @@ class App extends Component {
   };
 
   signUpForm = props => {
-    return <SignUpForm />;
+    return <SignUpForm handleCurrentUser={this.handleCurrentUser} />;
   };
 
   ////// ------------- render method ------------------- /////////////

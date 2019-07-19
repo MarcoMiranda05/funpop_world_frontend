@@ -1,61 +1,84 @@
 import React, { Component } from "react";
 import funko from "../images/blank_funko.png";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
+import { withRouter } from "react-router";
+import api from "../util/api";
 
-const SignUpForm = props => {
-  return (
-    <div className="signup-form">
-      <img className="blank-funko" src={funko} alt="funko" />
-      <label htmlFor="username">username:</label>
-      <input
-        onChange={props.handleChange}
-        id="username"
-        type="text"
-        name="username"
-        value={props.username}
-      />
-      <label htmlFor="password">password:</label>
-      <input
-        onChange={props.handleChange}
-        id="password"
-        type="password"
-        name="password"
-        value={props.password}
-      />
-      <label htmlFor="email">email:</label>
-      <input
-        onChange={props.handleChange}
-        id="email"
-        type="email"
-        name="email"
-        value={props.email}
-      />
-      <label htmlFor="pic_url">picture url:</label>
-      <input
-        onChange={props.handleChange}
-        id="pic_url"
-        type="pic_url"
-        name="pic_url"
-        value={props.pic_url}
-      />
-      <label htmlFor="city">city:</label>
-      <input
-        onChange={props.handleChange}
-        id="city"
-        type="city"
-        name="city"
-        value={props.city}
-      />
-      <label htmlFor="country">country:</label>
-      <input
-        onChange={props.handleChange}
-        id="country"
-        type="country"
-        name="country"
-        value={props.country}
-      />
-      <button>submit</button>
-    </div>
-  );
-};
+class SignUpForm extends Component {
+  state = {
+    username: "",
+    password: "",
+    email: "",
+    pic_url: "",
+    city: "",
+    country: ""
+  };
 
-export default SignUpForm;
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  createNewUser = () => {
+    const newUser = { user: { ...this.state } };
+    api.createUser(newUser).then(data => {
+      localStorage.setItem("token", data.jwt);
+      this.props.handleCurrentUser();
+      this.props.history.push("/");
+    });
+  };
+
+  render() {
+    return (
+      <div className="signup-form">
+        <img className="blank-funko" src={funko} alt="funko" />
+        <label htmlFor="username">username:</label>
+        <input
+          onChange={this.handleChange}
+          id="username"
+          type="text"
+          name="username"
+        />
+        <label htmlFor="password">password:</label>
+        <input
+          onChange={this.handleChange}
+          id="password"
+          type="password"
+          name="password"
+        />
+        <label htmlFor="email">email:</label>
+        <input
+          onChange={this.handleChange}
+          id="email"
+          type="email"
+          name="email"
+        />
+        <label htmlFor="pic_url">picture url:</label>
+        <input
+          onChange={this.handleChange}
+          id="pic_url"
+          type="pic_url"
+          name="pic_url"
+        />
+        <label htmlFor="city">city:</label>
+        <input onChange={this.handleChange} id="city" type="city" name="city" />
+        <label htmlFor="country">country:</label>
+        <input
+          onChange={this.handleChange}
+          id="country"
+          type="country"
+          name="country"
+        />
+        <button onClick={this.createNewUser}>submit</button>
+      </div>
+    );
+  }
+}
+
+export default withRouter(SignUpForm);
