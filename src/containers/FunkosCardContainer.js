@@ -6,7 +6,13 @@ const FunkosCardContainer = props => {
   return (
     <div className="funko-collection">
       {props.funkos.map(funko => {
-        return <FunkoCard key={funko.id} funko={funko} />;
+        return (
+          <FunkoCard
+            key={funko.id}
+            funko={funko}
+            selectFunko={props.selectFunko}
+          />
+        );
       })}
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import funko from "../images/blank_funko.png";
+import funko from "../images/funkoblank.png";
 import {
   BrowserRouter as Router,
   Route,
@@ -25,18 +25,24 @@ class SignUpForm extends Component {
     });
   };
 
-  createNewUser = () => {
+  createNewUser = e => {
+    e.preventDefault();
     const newUser = { user: { ...this.state } };
     api.createUser(newUser).then(data => {
-      localStorage.setItem("token", data.jwt);
-      this.props.handleCurrentUser();
-      this.props.history.push("/");
+      if (data.error) {
+        console.log(data.error);
+        alert(data.error[0]);
+      } else {
+        localStorage.setItem("token", data.jwt);
+        this.props.handleCurrentUser();
+        this.props.history.push("/");
+      }
     });
   };
 
   render() {
     return (
-      <div className="signup-form">
+      <form className="signup-form">
         <img className="blank-funko" src={funko} alt="funko" />
         <label htmlFor="username">username:</label>
         <input
@@ -76,7 +82,7 @@ class SignUpForm extends Component {
           name="country"
         />
         <button onClick={this.createNewUser}>submit</button>
-      </div>
+      </form>
     );
   }
 }

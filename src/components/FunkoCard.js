@@ -6,15 +6,13 @@ class FunkoCard extends Component {
   };
 
   render() {
-    const {
-      name,
-      fandom,
-      image_url,
-      release_date,
-      category
-    } = this.props.funko;
+    const { name, fandom, image_url, id } = this.props.funko;
     return (
-      <div className="funko-card">
+      <div
+        className="funko-card"
+        onClick={() => this.props.selectFunko(id)}
+        id={id}
+      >
         <img className="funko-img" src={image_url} alt={name} />
         <div className="gradient" />
         <div className="funko-details">

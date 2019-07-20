@@ -3,8 +3,6 @@
   width: 1000px;
   margin: auto;
   padding: 10px;
-
-  padding-top: 100px;
   text-align: center;
   color: white;
 }
@@ -46,9 +44,23 @@
   text-decoration: none;
   cursor: pointer;
   background-color: #333;
+  z-index: 1;
 }
 
 .blank-funko {
+  z-index: 1;
+  width: 30%;
   float: left;
-  padding-top: 100px;
+  margin-top: 90px;
+  background-color: transparent;
+  animation: blank-funko-spin infinite 10s alternate;
+}
+
+@keyframes blank-funko-spin {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }

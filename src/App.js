@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  withRouter
+} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import SignUpForm from "./components/SignUpForm";
 import FunkosCardContainer from "./containers/FunkosCardContainer";
+import FunkoPage from "./components/FunkoPage";
 import api from "./util/api";
 
 class App extends Component {
@@ -19,7 +26,8 @@ class App extends Component {
       password: "",
       loggedIn: false,
       collection: [],
-      wishlist: []
+      wishlist: [],
+      selectedFunko: {}
     };
 
     this.index = 20;
@@ -32,19 +40,6 @@ class App extends Component {
         this.setState({ funkos: data, selection: data.slice(0, this.index) })
       );
     this.handleCurrentUser();
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   api.getCurrentUser(token).then(user => {
-    //     this.setState({
-    //       loggedIn: true,
-    //       username: user.username,
-    //       currentUser: user,
-    //       password: "",
-    //       collection: user.collections,
-    //       wishlist: user.wishlists
-    //     });
-    //   });
-    // }
   }
 
   ////// ------------- handle change ------------------- /////////////
@@ -110,6 +105,56 @@ class App extends Component {
     });
   };
 
+  ////// ------------- select funko ------------------- /////////////
+
+  selectFunko = id => {
+    api.showFunko(id).then(data => {
+      this.setState({ selectedFunko: data }, () =>
+        this.props.history.push(`/funkopage/${id}`)
+      );
+    });
+  };
+
+  ////// ------------- add funko ------------------- /////////////
+
+  handleAddFunkoToCollection = () => {
+    api
+      .addFunkoToCollection(
+        this.state.currentUser.id,
+        this.state.selectedFunko.id
+      )
+      .then(() => {
+        this.setState({
+          collection: [...this.state.collection, this.state.selectedFunko]
+        });
+        alert(
+          `Amazing, you have add ${
+            this.state.selectedFunko.name
+          } to your collection!`
+        );
+        this.props.history.push("/");
+      });
+  };
+
+  handleAddFunkoToWishlist = () => {
+    api
+      .addFunkoToWishlist(
+        this.state.currentUser.id,
+        this.state.selectedFunko.id
+      )
+      .then(() => {
+        this.setState({
+          wishlist: [...this.state.wishlist, this.state.selectedFunko]
+        });
+        alert(
+          `Amazing, you have add ${
+            this.state.selectedFunko.name
+          } to your wishlist!`
+        );
+        this.props.history.push("/");
+      });
+  };
+
   ////// ------------- infinite scroll ------------------- /////////////
 
   fetchMoreFunkos = () => {
@@ -130,28 +175,44 @@ class App extends Component {
 
   ////// ------------- routes ------------------- /////////////
 
-  home = () => {
+  home = props => {
     return (
       <InfiniteScroll
         dataLength={this.state.selection.length}
         next={this.fetchMoreFunkos}
         hasMore={this.state.hasMore}
         loader={<h4>Loading...</h4>}
+        selectFunko={this.selectFunko}
+        {...props}
       >
-        <FunkosCardContainer funkos={this.state.selection} />
+        <FunkosCardContainer
+          funkos={this.state.selection}
+          selectFunko={this.selectFunko}
+        />
       </InfiniteScroll>
     );
   };
 
   signUpForm = props => {
-    return <SignUpForm handleCurrentUser={this.handleCurrentUser} />;
+    return <SignUpForm handleCurrentUser={this.handleCurrentUser} {...props} />;
+  };
+
+  funkoPage = props => {
+    return (
+      <FunkoPage
+        funko={this.state.selectedFunko}
+        handleAddFunkoToCollection={this.handleAddFunkoToCollection}
+        handleAddFunkoToWishlist={this.handleAddFunkoToWishlist}
+        {...props}
+      />
+    );
   };
 
   ////// ------------- render method ------------------- /////////////
 
   render() {
     return (
-      <Router>
+      <div>
         <NavBar
           loggedIn={this.state.loggedIn}
           onLoginClicked={this.onLoginClicked}
@@ -161,13 +222,22 @@ class App extends Component {
           username={this.state.username}
           handleChange={this.handleChange}
         />
-        <div id="content">
-          <Route path="/" exact component={this.home} />
-          <Route path="/signup-form" component={this.signUpForm} />
-        </div>
-      </Router>
+        <Switch>
+          <Route path="/" exact component={props => this.home(props)} />
+          <Route
+            path="/signup-form"
+            component={props => this.signUpForm(props)}
+          />
+          <Route
+            path="/funkopage/:id"
+            component={props => this.funkoPage(props)}
+          />
+        </Switch>
+      </div>
     );
   }
 }
 
-export default App;
+const AppRouter = withRouter(App);
+
+export default AppRouter;

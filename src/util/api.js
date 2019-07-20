@@ -31,9 +31,32 @@ const createUser = newUser => {
   }).then(res => res.json());
 };
 
+const showFunko = id => {
+  return fetch(`${API}/funkos/${id}`).then(resp => resp.json());
+};
+
+const addFunkoToCollection = (userId, funkoId) => {
+  return fetch(`${API}/collections`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ collection: { user_id: userId, funko_id: funkoId } })
+  }).then(res => res.json());
+};
+
+const addFunkoToWishlist = (userId, funkoId) => {
+  return fetch(`${API}/wishlists`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ wishlist: { user_id: userId, funko_id: funkoId } })
+  }).then(res => res.json());
+};
+
 export default {
   fetchFunkos,
   login,
   getCurrentUser,
-  createUser
+  createUser,
+  showFunko,
+  addFunkoToCollection,
+  addFunkoToWishlist
 };
