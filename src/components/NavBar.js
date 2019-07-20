@@ -21,7 +21,7 @@ class NavBar extends Component {
           </NavLink>
         </li>
         <li className="my-page">
-          <Link to={`/users/${this.props.currentUser.id}`}>my page</Link>
+          <Link to={`/mypage`}>my page</Link>
         </li>
         <li className="login">
           <div>

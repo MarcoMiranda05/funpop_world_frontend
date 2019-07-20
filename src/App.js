@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar";
 import SignUpForm from "./components/SignUpForm";
 import FunkosCardContainer from "./containers/FunkosCardContainer";
 import FunkoPage from "./components/FunkoPage";
+import UserPage from "./components/UserPage";
 import api from "./util/api";
 
 class App extends Component {
@@ -208,6 +209,10 @@ class App extends Component {
     );
   };
 
+  userPage = props => {
+    return <UserPage user={this.state.currentUser} />;
+  };
+
   ////// ------------- render method ------------------- /////////////
 
   render() {
@@ -232,6 +237,7 @@ class App extends Component {
             path="/funkopage/:id"
             component={props => this.funkoPage(props)}
           />
+          <Route path="/mypage" component={props => this.userPage(props)} />
         </Switch>
       </div>
     );

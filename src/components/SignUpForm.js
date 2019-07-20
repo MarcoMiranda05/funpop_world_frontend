@@ -31,7 +31,7 @@ class SignUpForm extends Component {
     api.createUser(newUser).then(data => {
       if (data.error) {
         console.log(data.error);
-        alert(data.error[0]);
+        alert(data.error.join("! "));
       } else {
         localStorage.setItem("token", data.jwt);
         this.props.handleCurrentUser();

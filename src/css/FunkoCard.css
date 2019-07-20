@@ -1,5 +1,5 @@
 .funko-collection {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -22,11 +22,10 @@
 }
 
 .funko-img {
-  width: 80%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   transition: 0.5s ease;
-  margin-top: 10px;
   background-color: white;
 }
 

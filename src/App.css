@@ -2,6 +2,7 @@
 @import "./css/FunkoCard.css";
 @import "./css/SignUpForm.css";
 @import "./css/FunkoPage.css";
+@import "./css/UserPage.css";
 
 * {
   background-color: #272424;
