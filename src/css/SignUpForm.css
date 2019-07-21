@@ -53,7 +53,7 @@
   float: left;
   margin-top: 90px;
   background-color: transparent;
-  animation: blank-funko-spin infinite 10s alternate;
+  animation: blank-funko-spin infinite 5s alternate;
 }
 
 @keyframes blank-funko-spin {

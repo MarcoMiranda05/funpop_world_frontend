@@ -5,7 +5,7 @@ class UserPage extends Component {
     const { username, pic_url, email, city, country } = this.props.user;
 
     return (
-      <React.Fragment>
+      <div className="mypage">
         <div className="user-div">
           <img src={pic_url} alt="avatar" className="user_pic" />
           <div className="user-infos">
@@ -15,19 +15,40 @@ class UserPage extends Component {
             <p>{country}</p>
           </div>
         </div>
-        <div>
-          {this.props.user.collections.map(collection => (
-            <div className="funko-card">
-              <img className="funko-img" src={collection.funko.image_url} />
-              <div className="gradient" />
-              <div className="funko-details">
-                <h3>{collection.funko.name}</h3>
-                <h4>{collection.funko.fandom}</h4>
-              </div>
-            </div>
-          ))}
+        <div className="trades-div">
+          <h1>trades offers</h1>
         </div>
-      </React.Fragment>
+        <div className="my-collection">
+          <h2 className="title">my collection</h2>
+          <div className="collection-div">
+            {this.props.collection.map(collection => (
+              <div className="funko-card-mypage">
+                <img className="funko-img" src={collection.funko.image_url} />
+                <div className="gradient" />
+                <div className="funko-details">
+                  <h3>{collection.funko.name}</h3>
+                  <h4>{collection.funko.fandom}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="my-wishlist">
+          <h2 className="title">my wishlist</h2>
+          <div className="wishlist-div">
+            {this.props.wishlist.map(wishlist => (
+              <div className="funko-card-mypage">
+                <img className="funko-img" src={wishlist.funko.image_url} />
+                <div className="gradient" />
+                <div className="funko-details">
+                  <h3>{wishlist.funko.name}</h3>
+                  <h4>{wishlist.funko.fandom}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     );
   }
 }

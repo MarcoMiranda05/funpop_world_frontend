@@ -1,3 +1,9 @@
+.mypage {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
 .user_pic {
   width: 200px;
   float: left;
@@ -7,15 +13,22 @@
 }
 
 .user-div {
-  display: inline-block;
+  display: inline-flex;
   padding: 10px;
   width: 600px;
-  height: 300px;
+  height: 250px;
+}
+
+.trades-div {
+  display: inline-flex;
+  padding: 10px;
+  width: 600px;
+  height: 250px;
 }
 
 .user-infos {
   margin-top: 14%;
-  margin-left: 50%;
+  margin-left: 10%;
   color: white;
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 18px;
@@ -33,4 +46,134 @@
 .user-infos a {
   margin: 0;
   color: white;
+}
+
+.collection-div {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 350px;
+  width: 650px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  border-style: solid;
+  border-color: #d33531;
+}
+
+.wishlist-div {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 350px;
+  width: 650px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  border-style: solid;
+  border-color: #d33531;
+}
+
+.title {
+  padding-left: 20px;
+  margin-bottom: 0;
+  width: 100%;
+  color: white;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.funko-card-mypage {
+  position: relative;
+  text-align: center;
+  width: 300px;
+  height: 350px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.funko-card-mypage:hover {
+  cursor: pointer;
+}
+
+.funko-card-mypage .funko-details {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 100%;
+  left: 0%;
+  background-color: #333;
+  transition: 0.5s ease;
+}
+
+.funko-card-mypage:hover .funko-details {
+  top: 70%;
+}
+
+.funko-card-mypage:hover .card-front {
+  top: -30%;
+}
+
+.funko-card-mypage:hover .gradient {
+  top: -25%;
+}
+
+.funko-card-mypage:hover .funko-img {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.funko-card-mypage .gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.71) 100%
+  );
+  transition: 0.5s ease;
 }

@@ -124,16 +124,16 @@ class App extends Component {
         this.state.currentUser.id,
         this.state.selectedFunko.id
       )
-      .then(() => {
+      .then(data => {
         this.setState({
-          collection: [...this.state.collection, this.state.selectedFunko]
+          collection: [data, ...this.state.collection]
         });
         alert(
           `Amazing, you have add ${
             this.state.selectedFunko.name
           } to your collection!`
         );
-        this.props.history.push("/");
+        this.props.history.push("/mypage");
       });
   };
 
@@ -143,16 +143,16 @@ class App extends Component {
         this.state.currentUser.id,
         this.state.selectedFunko.id
       )
-      .then(() => {
+      .then(data => {
         this.setState({
-          wishlist: [...this.state.wishlist, this.state.selectedFunko]
+          wishlist: [data, ...this.state.wishlist]
         });
         alert(
           `Amazing, you have add ${
             this.state.selectedFunko.name
           } to your wishlist!`
         );
-        this.props.history.push("/");
+        this.props.history.push("/mypage");
       });
   };
 
@@ -210,7 +210,13 @@ class App extends Component {
   };
 
   userPage = props => {
-    return <UserPage user={this.state.currentUser} />;
+    return (
+      <UserPage
+        user={this.state.currentUser}
+        collection={this.state.collection}
+        wishlist={this.state.wishlist}
+      />
+    );
   };
 
   ////// ------------- render method ------------------- /////////////
