@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class FunkoCard extends Component {
-  state = {
-    clicked: false
-  };
-
   render() {
     const { name, fandom, image_url, id } = this.props.funko;
     return (

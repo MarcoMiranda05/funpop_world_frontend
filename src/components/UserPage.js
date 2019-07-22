@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 
 class UserPage extends Component {
   render() {
@@ -19,7 +25,9 @@ class UserPage extends Component {
           <h1>trades offers</h1>
         </div>
         <div className="my-collection">
-          <h2 className="title">my collection</h2>
+          <Link to={"/mycollection"}>
+            <h2 className="title">my collection</h2>
+          </Link>
           <div className="collection-div">
             {this.props.collection.map(collection => (
               <div className="funko-card-mypage">
@@ -34,10 +42,16 @@ class UserPage extends Component {
           </div>
         </div>
         <div className="my-wishlist">
-          <h2 className="title">my wishlist</h2>
+          <Link to={"/mywishlist"}>
+            <h2 className="title">my wishlist</h2>
+          </Link>
           <div className="wishlist-div">
             {this.props.wishlist.map(wishlist => (
-              <div className="funko-card-mypage">
+              <div
+                className="funko-card-mypage"
+                onClick={this.props.selectWishFunko}
+                id={wishlist.id}
+              >
                 <img className="funko-img" src={wishlist.funko.image_url} />
                 <div className="gradient" />
                 <div className="funko-details">

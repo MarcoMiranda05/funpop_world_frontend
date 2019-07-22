@@ -71,14 +71,14 @@ class NavBar extends Component {
           <li className="home">
             <Link to="/">home</Link>
           </li>
-          <li className="categories">
+          {/* <li className="categories">
             <a className="dropbtn">categories</a>
             <div className="categories-content">
               <a value="Link 1">Link 1</a>
               <a value="Link 1">Link 2</a>
               <a value="Link 1">Link 3</a>
             </div>
-          </li>
+          </li> */}
           <li>
             <div className="nav">{this.toggleSingInOut()}</div>
           </li>

@@ -35,6 +35,10 @@ const showFunko = id => {
   return fetch(`${API}/funkos/${id}`).then(resp => resp.json());
 };
 
+const showFunkoWishlist = id => {
+  return fetch(`${API}/wishlists/${id}`).then(resp => resp.json());
+};
+
 const addFunkoToCollection = (userId, funkoId) => {
   return fetch(`${API}/collections`, {
     method: "POST",
@@ -51,6 +55,12 @@ const addFunkoToWishlist = (userId, funkoId) => {
   }).then(res => res.json());
 };
 
+const removeFromWishlist = id => {
+  return fetch(`${API}/wishlists/${id}`, {
+    method: "DELETE"
+  }).then(res => res.json());
+};
+
 export default {
   fetchFunkos,
   login,
@@ -58,5 +68,7 @@ export default {
   createUser,
   showFunko,
   addFunkoToCollection,
-  addFunkoToWishlist
+  addFunkoToWishlist,
+  showFunkoWishlist,
+  removeFromWishlist
 };

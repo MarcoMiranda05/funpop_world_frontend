@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { release } from "os";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink
+} from "react-router-dom";
 
 class FunkoPage extends Component {
   render() {
@@ -45,9 +50,9 @@ class FunkoPage extends Component {
             </button>
           </div>
         </div>
-        <a href="/">
+        <Link to={"/"}>
           <button>see all funkos</button>
-        </a>
+        </Link>
       </div>
     );
   }

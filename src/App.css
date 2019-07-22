@@ -3,6 +3,7 @@
 @import "./css/SignUpForm.css";
 @import "./css/FunkoPage.css";
 @import "./css/UserPage.css";
+@import "./css/FunkoPageWishlist.css";
 
 * {
   background-color: #272424;

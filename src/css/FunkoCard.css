@@ -2,6 +2,7 @@
   display: inline-flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin: 20px;
 }
 
 .funko-card {

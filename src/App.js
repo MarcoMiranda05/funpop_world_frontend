@@ -11,7 +11,10 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import SignUpForm from "./components/SignUpForm";
 import FunkosCardContainer from "./containers/FunkosCardContainer";
+import FunkosWishlistContainer from "./containers/FunkosWishlistContainer";
+import FunkosCollectionContainer from "./containers/FunkosCollectionContainer";
 import FunkoPage from "./components/FunkoPage";
+import FunkoPageWishlist from "./components/FunkoPageWishlist";
 import UserPage from "./components/UserPage";
 import api from "./util/api";
 
@@ -56,16 +59,19 @@ class App extends Component {
   handleCurrentUser = () => {
     const token = localStorage.getItem("token");
     if (token) {
-      api.getCurrentUser(token).then(user => {
-        this.setState({
-          loggedIn: true,
-          username: user.username,
-          currentUser: user,
-          password: "",
-          collection: user.collections,
-          wishlist: user.wishlists
-        });
-      });
+      api
+        .getCurrentUser(token)
+        .then(user => {
+          this.setState({
+            loggedIn: true,
+            username: user.username,
+            currentUser: user,
+            password: "",
+            collection: user.collections,
+            wishlist: user.wishlists
+          });
+        })
+        .then(() => this.props.history.push("/mypage"));
     }
   };
 
@@ -79,16 +85,19 @@ class App extends Component {
         localStorage.setItem("token", data.jwt);
         const token = localStorage.getItem("token");
         if (token) {
-          api.getCurrentUser(token).then(user => {
-            this.setState({
-              loggedIn: true,
-              username: user.username,
-              currentUser: user,
-              password: "",
-              collection: user.collections,
-              wishlist: user.wishlists
-            });
-          });
+          api
+            .getCurrentUser(token)
+            .then(user => {
+              this.setState({
+                loggedIn: true,
+                username: user.username,
+                currentUser: user,
+                password: "",
+                collection: user.collections,
+                wishlist: user.wishlists
+              });
+            })
+            .then(() => this.props.history.push("/mypage"));
         }
       }
     });
@@ -116,44 +125,115 @@ class App extends Component {
     });
   };
 
+  selectWishFunko = e => {
+    api.showFunkoWishlist(e.target.parentNode.id).then(data => {
+      this.setState({ selectedFunko: data }, () =>
+        this.props.history.push(`/wishfunko/${data.id}`)
+      );
+    });
+  };
+
   ////// ------------- add funko ------------------- /////////////
 
   handleAddFunkoToCollection = () => {
-    api
-      .addFunkoToCollection(
-        this.state.currentUser.id,
-        this.state.selectedFunko.id
-      )
-      .then(data => {
-        this.setState({
-          collection: [data, ...this.state.collection]
+    if (!this.state.loggedIn) {
+      alert("You need to be logged in to add a Funko!");
+      this.props.history.push("/");
+    } else {
+      api
+        .addFunkoToCollection(
+          this.state.currentUser.id,
+          this.state.selectedFunko.id
+        )
+        .then(data => {
+          this.setState({
+            collection: [data, ...this.state.collection]
+          });
+          alert(
+            `Amazing, you have add ${
+              this.state.selectedFunko.name
+            } to your collection!`
+          );
+          this.props.history.push("/mypage");
         });
-        alert(
-          `Amazing, you have add ${
-            this.state.selectedFunko.name
-          } to your collection!`
-        );
-        this.props.history.push("/mypage");
-      });
+    }
   };
 
   handleAddFunkoToWishlist = () => {
-    api
-      .addFunkoToWishlist(
-        this.state.currentUser.id,
-        this.state.selectedFunko.id
-      )
-      .then(data => {
-        this.setState({
-          wishlist: [data, ...this.state.wishlist]
+    if (!this.state.loggedIn) {
+      alert("You need to be logged in to add a Funko!");
+      this.props.history.push("/");
+    } else {
+      api
+        .addFunkoToWishlist(
+          this.state.currentUser.id,
+          this.state.selectedFunko.id
+        )
+        .then(data => {
+          this.setState({
+            wishlist: [data, ...this.state.wishlist]
+          });
+          alert(
+            `Amazing, you have add ${
+              this.state.selectedFunko.name
+            } to your wishlist!`
+          );
+          this.props.history.push("/mypage");
         });
-        alert(
-          `Amazing, you have add ${
-            this.state.selectedFunko.name
-          } to your wishlist!`
-        );
-        this.props.history.push("/mypage");
-      });
+    }
+  };
+
+  ////// ------------- remove funko from wishlist add to collection ------------------- /////////////
+
+  removeFromWishlistAddToCollection = () => {
+    api.removeFromWishlist(this.state.selectedFunko.id).then(() => {
+      const newArray = [...this.state.wishlist].filter(
+        remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
+      );
+      this.setState({ wishlist: newArray });
+      api
+        .addFunkoToCollection(
+          this.state.currentUser.id,
+          this.state.selectedFunko.funko.id
+        )
+        .then(data => {
+          this.setState({
+            collection: [data, ...this.state.collection]
+          });
+          alert(
+            `Amazing, you have add ${
+              this.state.selectedFunko.funko.name
+            } to your collection!`
+          );
+          this.props.history.push("/mycollection");
+        });
+    });
+  };
+
+  ////// ------------- remove funko ------------------- /////////////
+
+  removeFromWishlist = () => {
+    api.removeFromWishlist(this.state.selectedFunko.id).then(() => {
+      const newArray = [...this.state.wishlist].filter(
+        remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
+      );
+      this.setState({ wishlist: newArray });
+      alert(
+        `You have remove ${
+          this.state.selectedFunko.funko.name
+        } from your wishlist with success!`
+      );
+      this.props.history.push("/mywishlist");
+    });
+  };
+  ////// ------------- search on Google ------------------- /////////////
+
+  searchOnGoogle = () => {
+    const searchTerm = this.state.selectedFunko.funko.name.replace(" ", "+");
+
+    window.open(
+      `https://www.google.com/search?q=${searchTerm}+funko+pop&rlz=1C5CHFA_enGB841GB841&source=lnms&tbm=shop`
+    );
   };
 
   ////// ------------- infinite scroll ------------------- /////////////
@@ -209,12 +289,47 @@ class App extends Component {
     );
   };
 
+  funkoPageWishlist = props => {
+    return (
+      <FunkoPageWishlist
+        funko={this.state.selectedFunko.funko}
+        removeFromWishlist={this.removeFromWishlist}
+        removeFromWishlistAddToCollection={
+          this.removeFromWishlistAddToCollection
+        }
+        searchOnGoogle={this.searchOnGoogle}
+        {...props}
+      />
+    );
+  };
+
   userPage = props => {
     return (
       <UserPage
         user={this.state.currentUser}
         collection={this.state.collection}
         wishlist={this.state.wishlist}
+        selectWishFunko={this.selectWishFunko}
+        {...props}
+      />
+    );
+  };
+
+  myWishlistPage = props => {
+    return (
+      <FunkosWishlistContainer
+        wishlist={this.state.wishlist}
+        selectWishFunko={this.selectWishFunko}
+        {...props}
+      />
+    );
+  };
+
+  myCollectionPage = props => {
+    return (
+      <FunkosCollectionContainer
+        collection={this.state.collection}
+        {...props}
       />
     );
   };
@@ -244,6 +359,18 @@ class App extends Component {
             component={props => this.funkoPage(props)}
           />
           <Route path="/mypage" component={props => this.userPage(props)} />
+          <Route
+            path="/mywishlist"
+            component={props => this.myWishlistPage(props)}
+          />
+          <Route
+            path="/mycollection"
+            component={props => this.myCollectionPage(props)}
+          />
+          <Route
+            path="/wishfunko/:id"
+            component={props => this.funkoPageWishlist(props)}
+          />
         </Switch>
       </div>
     );
