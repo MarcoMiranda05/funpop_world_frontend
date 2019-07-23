@@ -51,7 +51,7 @@ class FunkoPage extends Component {
           </div>
         </div>
         <Link to={"/"}>
-          <button>see all funkos</button>
+          <button onClick={this.props.refreshData}>see all funkos</button>
         </Link>
       </div>
     );

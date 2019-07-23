@@ -61,6 +61,12 @@ const removeFromWishlist = id => {
   }).then(res => res.json());
 };
 
+const searchFunkos = searchTerm => {
+  return fetch(`${API}/searchquery?searchterm=${searchTerm}`).then(resp =>
+    resp.json()
+  );
+};
+
 export default {
   fetchFunkos,
   login,
@@ -70,5 +76,6 @@ export default {
   addFunkoToCollection,
   addFunkoToWishlist,
   showFunkoWishlist,
-  removeFromWishlist
+  removeFromWishlist,
+  searchFunkos
 };

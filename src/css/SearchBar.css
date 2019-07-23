@@ -1,0 +1,32 @@
+.search-bar {
+  width: 100%;
+  display: inline-flex;
+}
+
+.search-bar input {
+  background-color: white;
+  width: 30%;
+  height: 30px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-left: 30%;
+
+  display: block;
+  margin-top: 10px;
+  color: black;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.search-bar input:focus {
+  outline: 0;
+}
+
+.search-bar button {
+  height: 37px;
+  border-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #d33531;
+}

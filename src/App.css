@@ -4,6 +4,7 @@
 @import "./css/FunkoPage.css";
 @import "./css/UserPage.css";
 @import "./css/FunkoPageWishlist.css";
+@import "./css/SearchBar.css";
 
 * {
   background-color: #272424;

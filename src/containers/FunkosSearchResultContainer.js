@@ -1,0 +1,20 @@
+import React from "react";
+import FunkoCard from "../components/FunkoCard";
+
+const FunkosSearchResultContainer = props => {
+  return (
+    <div className="funko-collection">
+      {props.funkos.map(funko => {
+        return (
+          <FunkoCard
+            key={funko.id}
+            funko={funko}
+            selectFunko={props.selectFunko}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default FunkosSearchResultContainer;

@@ -17,6 +17,8 @@ import FunkoPage from "./components/FunkoPage";
 import FunkoPageWishlist from "./components/FunkoPageWishlist";
 import UserPage from "./components/UserPage";
 import api from "./util/api";
+import SearchBar from "./components/SearchBar";
+import FunkosSearchResultContainer from "./containers/FunkosSearchResultContainer";
 
 class App extends Component {
   constructor() {
@@ -31,7 +33,9 @@ class App extends Component {
       loggedIn: false,
       collection: [],
       wishlist: [],
-      selectedFunko: {}
+      selectedFunko: {},
+      searchTerm: "",
+      searchResult: []
     };
 
     this.index = 20;
@@ -52,6 +56,27 @@ class App extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  };
+
+  ////// ------------- search funko ------------------- /////////////
+
+  handleSearch = e => {
+    e.preventDefault();
+    this.setState({
+      searchTerm: e.target.value
+    });
+  };
+
+  submitSearch = () => {
+    api
+      .searchFunkos(this.state.searchTerm)
+      .then(data =>
+        this.setState({
+          searchResult: data,
+          searchTerm: ""
+        })
+      )
+      .then(() => this.props.history.push("/result"));
   };
 
   ////// ------------- get current user ------------------- /////////////
@@ -256,21 +281,26 @@ class App extends Component {
 
   ////// ------------- routes ------------------- /////////////
 
-  home = props => {
+  home = () => {
     return (
-      <InfiniteScroll
-        dataLength={this.state.selection.length}
-        next={this.fetchMoreFunkos}
-        hasMore={this.state.hasMore}
-        loader={<h4>Loading...</h4>}
-        selectFunko={this.selectFunko}
-        {...props}
-      >
-        <FunkosCardContainer
-          funkos={this.state.selection}
-          selectFunko={this.selectFunko}
+      <React.Fragment>
+        <SearchBar
+          handleSearch={this.handleSearch}
+          submitSearch={this.submitSearch}
         />
-      </InfiniteScroll>
+
+        <InfiniteScroll
+          dataLength={this.state.selection.length}
+          next={this.fetchMoreFunkos}
+          hasMore={this.state.hasMore}
+          loader={<h4>Loading...</h4>}
+        >
+          <FunkosCardContainer
+            funkos={this.state.selection}
+            selectFunko={this.selectFunko}
+          />
+        </InfiniteScroll>
+      </React.Fragment>
     );
   };
 
@@ -284,6 +314,7 @@ class App extends Component {
         funko={this.state.selectedFunko}
         handleAddFunkoToCollection={this.handleAddFunkoToCollection}
         handleAddFunkoToWishlist={this.handleAddFunkoToWishlist}
+        refreshData={this.refreshData}
         {...props}
       />
     );
@@ -334,6 +365,20 @@ class App extends Component {
     );
   };
 
+  searchResultPage = () => {
+    return (
+      <React.Fragment>
+        <SearchBar
+          handleSearch={this.handleSearch}
+          submitSearch={this.submitSearch}
+        />
+        <FunkosSearchResultContainer
+          funkos={this.state.searchResult}
+          selectFunko={this.selectFunko}
+        />
+      </React.Fragment>
+    );
+  };
   ////// ------------- render method ------------------- /////////////
 
   render() {
@@ -349,7 +394,7 @@ class App extends Component {
           handleChange={this.handleChange}
         />
         <Switch>
-          <Route path="/" exact component={props => this.home(props)} />
+          <Route path="/" exact component={this.home} />
           <Route
             path="/signup-form"
             component={props => this.signUpForm(props)}
@@ -371,6 +416,7 @@ class App extends Component {
             path="/wishfunko/:id"
             component={props => this.funkoPageWishlist(props)}
           />
+          <Route path="/result" component={this.searchResultPage} />
         </Switch>
       </div>
     );

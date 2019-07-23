@@ -92,7 +92,7 @@ li.categories {
 
 .login {
   float: right;
-  display: inline-block;
+
   font-family: "Comic Sans MS", cursive, sans-serif;
   font-size: 20px;
   color: white;
@@ -164,7 +164,6 @@ button:hover,
   text-align: center;
   padding-top: 25px;
   float: right;
-  display: inline-block;
 }
 
 .login-form input {
