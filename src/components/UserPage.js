@@ -22,7 +22,7 @@ class UserPage extends Component {
           </div>
         </div>
         <div className="trades-div">
-          <h1>trades offers</h1>
+          <h1 />
         </div>
         <div className="my-collection">
           <Link to={"/mycollection"}>
@@ -30,7 +30,11 @@ class UserPage extends Component {
           </Link>
           <div className="collection-div">
             {this.props.collection.map(collection => (
-              <div className="funko-card-mypage">
+              <div
+                className="funko-card-mypage"
+                onClick={this.props.selectCollectFunko}
+                id={collection.id}
+              >
                 <img className="funko-img" src={collection.funko.image_url} />
                 <div className="gradient" />
                 <div className="funko-details">

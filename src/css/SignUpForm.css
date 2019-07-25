@@ -11,7 +11,7 @@
   color: #ed5941;
   font-size: 30px;
 
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 .signup-form input {
@@ -19,7 +19,7 @@
   font-size: 2em;
   border-radius: 5px;
   border-width: 0px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
   background-color: white;
 }
 
@@ -39,7 +39,7 @@
   margin-top: 20px;
   width: 30%;
   border-radius: 5px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
   color: white;
   text-decoration: none;
   cursor: pointer;

@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 class FunkoCollection extends Component {
   render() {
-    const { name, fandom, image_url, id } = this.props.funko;
+    const { name, fandom, image_url, id } = this.props.collection.funko;
     return (
       <div
         className="funko-card"
-        onClick={() => this.props.selectFunko(id)}
-        id={id}
+        onClick={this.props.selectCollectFunko}
+        id={this.props.collection.id}
+        funkoid={id}
       >
         <img className="funko-img" src={image_url} alt={name} />
         <div className="gradient" />

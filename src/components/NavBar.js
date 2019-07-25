@@ -71,14 +71,45 @@ class NavBar extends Component {
           <li className="home">
             <Link to="/">home</Link>
           </li>
-          {/* <li className="categories">
+          <li
+            className="categories"
+            onClick={e =>
+              this.props.handleChange({
+                target: { name: e.target.name, value: e.target.textContent }
+              })
+            }
+          >
             <a className="dropbtn">categories</a>
             <div className="categories-content">
-              <a value="Link 1">Link 1</a>
-              <a value="Link 1">Link 2</a>
-              <a value="Link 1">Link 3</a>
+              <a name="searchTerm" value="animation">
+                animation
+              </a>
+              <a name="searchTerm" value="funko">
+                funko
+              </a>
+              <a name="searchTerm" value="games">
+                games
+              </a>
+              <a name="searchTerm" value="heroes">
+                heroes
+              </a>
+              <a name="searchTerm" value="movies">
+                movies
+              </a>
+              <a name="searchTerm" value="music">
+                music
+              </a>
+              <a name="searchTerm" value="sports">
+                sports
+              </a>
+              <a name="searchTerm" value="television">
+                television
+              </a>
+              <a name="searchTerm" value="other">
+                other
+              </a>
             </div>
-          </li> */}
+          </li>
           <li>
             <div className="nav">{this.toggleSingInOut()}</div>
           </li>

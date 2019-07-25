@@ -41,7 +41,7 @@ class FunkoPageWishlist extends Component {
               .format(date)
               .toLowerCase()}
           </h2>
-          <div className="buttons-div">
+          <div className="buttons-div-wishlist">
             <button onClick={this.props.removeFromWishlist}>
               remove from wishlist
             </button>

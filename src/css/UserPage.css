@@ -6,6 +6,8 @@ a {
   display: inline-flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  width: 100%;
+  margin-left: 10px;
 }
 
 .user_pic {
@@ -34,7 +36,7 @@ a {
   margin-top: 14%;
   margin-left: 10%;
   color: white;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
   font-size: 18px;
 }
 
@@ -54,36 +56,26 @@ a {
 
 .collection-div {
   display: inline-flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
   overflow: scroll;
   height: 350px;
-  width: 650px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  padding-top: 20px;
-  padding-left: 30px;
-  padding-bottom: 10px;
+  width: 600px;
   border-style: solid;
   border-color: #d33531;
   border-radius: 20px;
+  text-align: center;
 }
 
 .wishlist-div {
   display: inline-flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
   overflow: scroll;
   height: 350px;
-  width: 650px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  padding-top: 20px;
-  padding-left: 30px;
-  padding-bottom: 10px;
+  width: 600px;
   border-style: solid;
   border-color: #d33531;
   border-radius: 20px;
+  text-align: center;
 }
 
 .title {
@@ -91,7 +83,7 @@ a {
   margin-bottom: 0;
   width: 100%;
   color: white;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
 }
 
 .funko-card-mypage {
@@ -182,4 +174,14 @@ a {
     rgba(0, 0, 0, 0.71) 100%
   );
   transition: 0.5s ease;
+}
+
+.my-wishlist {
+  width: 50%;
+  text-align: center;
+}
+
+.my-collection {
+  width: 50%;
+  text-align: center;
 }

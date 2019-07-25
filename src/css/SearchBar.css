@@ -1,6 +1,8 @@
 .search-bar {
   width: 100%;
   display: inline-flex;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .search-bar input {
@@ -14,7 +16,7 @@
   display: block;
   margin-top: 10px;
   color: black;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Signika", sans-serif;
   font-size: 20px;
   padding-left: 10px;
 }
@@ -29,4 +31,16 @@
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   background-color: #d33531;
+  background-image: url("https://image.flaticon.com/icons/png/512/14/14968.png");
+}
+
+.search-bar img {
+  height: 25px;
+  background-color: #d33531;
+}
+
+.search-result {
+  width: 100%;
+  font-family: "Signika", sans-serif;
+  color: white;
 }

@@ -15,6 +15,7 @@ import FunkosWishlistContainer from "./containers/FunkosWishlistContainer";
 import FunkosCollectionContainer from "./containers/FunkosCollectionContainer";
 import FunkoPage from "./components/FunkoPage";
 import FunkoPageWishlist from "./components/FunkoPageWishlist";
+import FunkoPageCollection from "./components/FunkoPageCollection";
 import UserPage from "./components/UserPage";
 import api from "./util/api";
 import SearchBar from "./components/SearchBar";
@@ -58,16 +59,16 @@ class App extends Component {
     });
   };
 
-  ////// ------------- search funko ------------------- /////////////
-
-  handleSearch = e => {
-    e.preventDefault();
+  handleSelect = e => {
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: e.target.id
     });
   };
 
-  submitSearch = () => {
+  ////// ------------- search funko ------------------- /////////////
+
+  submitSearch = e => {
+    e.preventDefault();
     api
       .searchFunkos(this.state.searchTerm)
       .then(data =>
@@ -154,6 +155,14 @@ class App extends Component {
     api.showFunkoWishlist(e.target.parentNode.id).then(data => {
       this.setState({ selectedFunko: data }, () =>
         this.props.history.push(`/wishfunko/${data.id}`)
+      );
+    });
+  };
+
+  selectCollectFunko = e => {
+    api.showFunkoCollection(e.target.parentNode.id).then(data => {
+      this.setState({ selectedFunko: data }, () =>
+        this.props.history.push(`/collectfunko/${data.id}`)
       );
     });
   };
@@ -251,6 +260,21 @@ class App extends Component {
       this.props.history.push("/mywishlist");
     });
   };
+
+  removeFromCollection = () => {
+    api.removeFromCollection(this.state.selectedFunko.id).then(() => {
+      const newArray = [...this.state.collection].filter(
+        remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
+      );
+      this.setState({ collection: newArray });
+      alert(
+        `You have remove ${
+          this.state.selectedFunko.funko.name
+        } from your collection with success!`
+      );
+      this.props.history.push("/mycollection");
+    });
+  };
   ////// ------------- search on Google ------------------- /////////////
 
   searchOnGoogle = () => {
@@ -259,6 +283,58 @@ class App extends Component {
     window.open(
       `https://www.google.com/search?q=${searchTerm}+funko+pop&rlz=1C5CHFA_enGB841GB841&source=lnms&tbm=shop`
     );
+  };
+
+  ////// ------------- sort ------------------- /////////////
+
+  handleSort = e => {
+    switch (e.target.value) {
+      case "newest":
+        this.setState({
+          funkos: this.state.funkos.sort((a, b) => {
+            const a_parts = a.release_date.split("-");
+            const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
+            const b_parts = b.release_date.split("-");
+            const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
+            return b_date - a_date;
+          }),
+          selection: this.state.funkos.slice(0, this.index)
+        });
+        break;
+
+      case "oldest":
+        this.setState({
+          funkos: this.state.funkos.sort((a, b) => {
+            const a_parts = a.release_date.split("-");
+            const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
+            const b_parts = b.release_date.split("-");
+            const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
+            return a_date - b_date;
+          }),
+          selection: this.state.funkos.slice(0, this.index)
+        });
+        break;
+
+      case "name":
+        this.setState({
+          funkos: this.state.funkos.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          ),
+          selection: this.state.funkos.slice(0, this.index)
+        });
+        break;
+
+      case "name_back":
+        this.setState({
+          funkos: this.state.funkos.sort((a, b) =>
+            b.name.localeCompare(a.name)
+          ),
+          selection: this.state.funkos.slice(0, this.index)
+        });
+        break;
+
+      default:
+    }
   };
 
   ////// ------------- infinite scroll ------------------- /////////////
@@ -285,7 +361,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <SearchBar
-          handleSearch={this.handleSearch}
+          handleChange={this.handleChange}
           submitSearch={this.submitSearch}
         />
 
@@ -298,6 +374,7 @@ class App extends Component {
           <FunkosCardContainer
             funkos={this.state.selection}
             selectFunko={this.selectFunko}
+            handleSort={this.handleSort}
           />
         </InfiniteScroll>
       </React.Fragment>
@@ -334,15 +411,31 @@ class App extends Component {
     );
   };
 
-  userPage = props => {
+  funkoPageCollection = props => {
     return (
-      <UserPage
-        user={this.state.currentUser}
-        collection={this.state.collection}
-        wishlist={this.state.wishlist}
-        selectWishFunko={this.selectWishFunko}
+      <FunkoPageCollection
+        funko={this.state.selectedFunko.funko}
+        removeFromCollection={this.removeFromCollection}
         {...props}
       />
+    );
+  };
+
+  userPage = () => {
+    return (
+      <React.Fragment>
+        <SearchBar
+          handleChange={this.handleChange}
+          submitSearch={this.submitSearch}
+        />
+        <UserPage
+          user={this.state.currentUser}
+          collection={this.state.collection}
+          wishlist={this.state.wishlist}
+          selectWishFunko={this.selectWishFunko}
+          selectCollectFunko={this.selectCollectFunko}
+        />
+      </React.Fragment>
     );
   };
 
@@ -360,6 +453,7 @@ class App extends Component {
     return (
       <FunkosCollectionContainer
         collection={this.state.collection}
+        selectCollectFunko={this.selectCollectFunko}
         {...props}
       />
     );
@@ -369,7 +463,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <SearchBar
-          handleSearch={this.handleSearch}
+          handleChange={this.handleChange}
           submitSearch={this.submitSearch}
         />
         <FunkosSearchResultContainer
@@ -403,7 +497,7 @@ class App extends Component {
             path="/funkopage/:id"
             component={props => this.funkoPage(props)}
           />
-          <Route path="/mypage" component={props => this.userPage(props)} />
+          <Route path="/mypage" component={this.userPage} />
           <Route
             path="/mywishlist"
             component={props => this.myWishlistPage(props)}
@@ -415,6 +509,10 @@ class App extends Component {
           <Route
             path="/wishfunko/:id"
             component={props => this.funkoPageWishlist(props)}
+          />
+          <Route
+            path="/collectfunko/:id"
+            component={props => this.funkoPageCollection(props)}
           />
           <Route path="/result" component={this.searchResultPage} />
         </Switch>
