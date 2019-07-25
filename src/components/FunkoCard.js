@@ -6,7 +6,7 @@ class FunkoCard extends Component {
     return (
       <div
         className="funko-card"
-        onClick={() => this.props.selectFunko(id)}
+        onClick={() => this.props.handleSelect(id)}
         id={id}
       >
         <img className="funko-img" src={image_url} alt={name} />

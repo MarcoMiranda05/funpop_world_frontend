@@ -21,7 +21,8 @@ const FunkosCardContainer = props => {
           <FunkoCard
             key={funko.id}
             funko={funko}
-            selectFunko={props.selectFunko}
+            // selectFunko={props.selectFunko}
+            handleSelect={props.handleSelect}
           />
         );
       })}

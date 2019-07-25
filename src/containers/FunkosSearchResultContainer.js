@@ -12,7 +12,7 @@ const FunkosSearchResultContainer = props => {
           <FunkoCard
             key={funko.id}
             funko={funko}
-            selectFunko={props.selectFunko}
+            handleSelect={props.handleSelect}
           />
         );
       })}

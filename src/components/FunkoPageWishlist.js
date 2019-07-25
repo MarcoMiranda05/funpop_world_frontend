@@ -5,8 +5,24 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import api from "../util/api";
 
 class FunkoPageWishlist extends Component {
+  state = {
+    wishlist: {
+      funko: {
+        release_date: "1989-03-06"
+      }
+    }
+  };
+
+  componentDidMount() {
+    api.showFunkoWishlist(this.props.id).then(data => {
+      this.setState({ wishlist: data });
+      // console.log(data);
+    });
+  }
+
   render() {
     const {
       name,
@@ -14,7 +30,7 @@ class FunkoPageWishlist extends Component {
       fandom,
       category,
       release_date
-    } = this.props.funko;
+    } = this.state.wishlist.funko;
 
     const parts = release_date.split("-");
     const date = new Date(parts[0], parts[1] - 1, parts[2]);

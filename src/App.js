@@ -59,12 +59,13 @@ class App extends Component {
     });
   };
 
-  handleSelect = e => {
-    this.setState({
-      searchTerm: e.target.id
-    });
+  handleSelect = id => {
+    this.props.history.push(`/funkopage/${id}`);
   };
 
+  handleSelectWish = id => {
+    this.props.history.push(`/wishfunko/${id}`);
+  };
   ////// ------------- search funko ------------------- /////////////
 
   submitSearch = e => {
@@ -143,21 +144,21 @@ class App extends Component {
 
   ////// ------------- select funko ------------------- /////////////
 
-  selectFunko = id => {
-    api.showFunko(id).then(data => {
-      this.setState({ selectedFunko: data }, () =>
-        this.props.history.push(`/funkopage/${id}`)
-      );
-    });
-  };
+  // selectFunko = id => {
+  //   api.showFunko(id).then(data => {
+  //     this.setState({ selectedFunko: data }, () =>
+  //       this.props.history.push(`/funkopage/${id}`)
+  //     );
+  //   });
+  // };
 
-  selectWishFunko = e => {
-    api.showFunkoWishlist(e.target.parentNode.id).then(data => {
-      this.setState({ selectedFunko: data }, () =>
-        this.props.history.push(`/wishfunko/${data.id}`)
-      );
-    });
-  };
+  // selectWishFunko = e => {
+  //   api.showFunkoWishlist(e.target.parentNode.id).then(data => {
+  //     this.setState({ selectedFunko: data }, () =>
+  //       this.props.history.push(`/wishfunko/${data.id}`)
+  //     );
+  //   });
+  // };
 
   selectCollectFunko = e => {
     api.showFunkoCollection(e.target.parentNode.id).then(data => {
@@ -193,28 +194,26 @@ class App extends Component {
     }
   };
 
-  handleAddFunkoToWishlist = () => {
-    if (!this.state.loggedIn) {
-      alert("You need to be logged in to add a Funko!");
-      this.props.history.push("/");
-    } else {
-      api
-        .addFunkoToWishlist(
-          this.state.currentUser.id,
-          this.state.selectedFunko.id
-        )
-        .then(data => {
-          this.setState({
-            wishlist: [data, ...this.state.wishlist]
-          });
-          alert(
-            `Amazing, you have add ${
-              this.state.selectedFunko.name
-            } to your wishlist!`
-          );
-          this.props.history.push("/mypage");
-        });
-    }
+  handleAddFunkoToWishlist = e => {
+    console.log(e.target.parentNode.parentNode.parentNode);
+    // if (!this.state.loggedIn) {
+    //   alert("You need to be logged in to add a Funko!");
+    //   this.props.history.push("/");
+    // } else {
+    //   api
+    //     .addFunkoToWishlist(this.state.currentUser.id, props.match.params.id)
+    //     .then(data => {
+    //       this.setState({
+    //         wishlist: [data, ...this.state.wishlist]
+    //       });
+    //       alert(
+    //         `Amazing, you have add ${
+    //           this.state.selectedFunko.name
+    //         } to your wishlist!`
+    //       );
+    //       this.props.history.push("/mypage");
+    //     });
+    // }
   };
 
   ////// ------------- remove funko from wishlist add to collection ------------------- /////////////
@@ -373,7 +372,8 @@ class App extends Component {
         >
           <FunkosCardContainer
             funkos={this.state.selection}
-            selectFunko={this.selectFunko}
+            // selectFunko={this.selectFunko}
+            handleSelect={this.handleSelect}
             handleSort={this.handleSort}
           />
         </InfiniteScroll>
@@ -388,10 +388,10 @@ class App extends Component {
   funkoPage = props => {
     return (
       <FunkoPage
-        funko={this.state.selectedFunko}
+        // funko={this.state.selectedFunko}
         handleAddFunkoToCollection={this.handleAddFunkoToCollection}
         handleAddFunkoToWishlist={this.handleAddFunkoToWishlist}
-        refreshData={this.refreshData}
+        id={props.match.params.id}
         {...props}
       />
     );
@@ -400,7 +400,7 @@ class App extends Component {
   funkoPageWishlist = props => {
     return (
       <FunkoPageWishlist
-        funko={this.state.selectedFunko.funko}
+        id={props.match.params.id}
         removeFromWishlist={this.removeFromWishlist}
         removeFromWishlistAddToCollection={
           this.removeFromWishlistAddToCollection
@@ -432,7 +432,8 @@ class App extends Component {
           user={this.state.currentUser}
           collection={this.state.collection}
           wishlist={this.state.wishlist}
-          selectWishFunko={this.selectWishFunko}
+          handleSelectWish={this.handleSelectWish}
+          // selectWishFunko={this.selectWishFunko}
           selectCollectFunko={this.selectCollectFunko}
         />
       </React.Fragment>
@@ -443,7 +444,7 @@ class App extends Component {
     return (
       <FunkosWishlistContainer
         wishlist={this.state.wishlist}
-        selectWishFunko={this.selectWishFunko}
+        handleSelectWish={this.handleSelectWish}
         {...props}
       />
     );
@@ -468,7 +469,7 @@ class App extends Component {
         />
         <FunkosSearchResultContainer
           funkos={this.state.searchResult}
-          selectFunko={this.selectFunko}
+          handleSelect={this.handleSelect}
         />
       </React.Fragment>
     );

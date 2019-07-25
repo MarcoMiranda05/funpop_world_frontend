@@ -53,7 +53,7 @@ class UserPage extends Component {
             {this.props.wishlist.map(wishlist => (
               <div
                 className="funko-card-mypage"
-                onClick={this.props.selectWishFunko}
+                onClick={this.props.handleSelectWish}
                 id={wishlist.id}
               >
                 <img className="funko-img" src={wishlist.funko.image_url} />

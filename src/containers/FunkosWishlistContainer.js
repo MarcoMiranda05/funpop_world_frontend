@@ -10,7 +10,7 @@ const FunkosWishlistContainer = props => {
           <FunkoWishlist
             key={wishlist.id}
             wishlist={wishlist}
-            selectWishFunko={props.selectWishFunko}
+            handleSelectWish={props.handleSelectWish}
           />
         );
       })}
