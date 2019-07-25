@@ -146,7 +146,7 @@ class App extends Component {
   selectFunko = id => {
     api.showFunko(id).then(data => {
       this.setState({ selectedFunko: data }, () =>
-        this.props.history.push(`/funkopage/${id}`)
+        this.props.history.push(`/funko/${id}`)
       );
     });
   };
@@ -391,7 +391,7 @@ class App extends Component {
         funko={this.state.selectedFunko}
         handleAddFunkoToCollection={this.handleAddFunkoToCollection}
         handleAddFunkoToWishlist={this.handleAddFunkoToWishlist}
-        refreshData={this.refreshData}
+        id={props.match.params.id}
         {...props}
       />
     );
@@ -493,10 +493,7 @@ class App extends Component {
             path="/signup-form"
             component={props => this.signUpForm(props)}
           />
-          <Route
-            path="/funkopage/:id"
-            component={props => this.funkoPage(props)}
-          />
+          <Route path="/funko/:id" component={props => this.funkoPage(props)} />
           <Route path="/mypage" component={this.userPage} />
           <Route
             path="/mywishlist"

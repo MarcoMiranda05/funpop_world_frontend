@@ -5,8 +5,21 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import api from "../util/api";
 
 class FunkoPage extends Component {
+  state = {
+    funko: {
+      release_date: "1989-03-06"
+    }
+  };
+
+  componentDidMount() {
+    api.showFunko(this.props.id).then(data => {
+      this.setState({ funko: data });
+    });
+  }
+
   render() {
     const {
       name,
@@ -14,7 +27,7 @@ class FunkoPage extends Component {
       fandom,
       category,
       release_date
-    } = this.props.funko;
+    } = this.state.funko;
 
     const parts = release_date.split("-");
     const date = new Date(parts[0], parts[1] - 1, parts[2]);
