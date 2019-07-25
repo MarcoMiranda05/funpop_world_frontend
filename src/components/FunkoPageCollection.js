@@ -14,7 +14,7 @@ class FunkoPageCollection extends Component {
       fandom,
       category,
       release_date
-    } = this.props.funko;
+    } = this.props.selectedFunko.funko;
 
     const parts = release_date.split("-");
     const date = new Date(parts[0], parts[1] - 1, parts[2]);
@@ -46,8 +46,10 @@ class FunkoPageCollection extends Component {
               remove from collection
             </button>
 
-            <button onClick={console.log("hello")}>
-              availabe to trades (soon)
+            <button onClick={this.props.toggleFunkoAvailability}>
+              {this.props.selectedFunko.available_to_trade
+                ? "remove trade availability"
+                : "availabe to trade"}
             </button>
           </div>
         </div>

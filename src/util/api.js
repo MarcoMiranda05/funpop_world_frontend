@@ -77,6 +77,14 @@ const searchFunkos = searchTerm => {
   );
 };
 
+const toggleFunkoOnTrade = (id, availability) => {
+  return fetch(`${API}/collections/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ collection: { available_to_trade: availability } })
+  }).then(resp => resp.json());
+};
+
 export default {
   fetchFunkos,
   login,
@@ -89,5 +97,6 @@ export default {
   removeFromWishlist,
   removeFromCollection,
   showFunkoCollection,
-  searchFunkos
+  searchFunkos,
+  toggleFunkoOnTrade
 };

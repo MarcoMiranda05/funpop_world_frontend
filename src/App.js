@@ -244,6 +244,21 @@ class App extends Component {
     });
   };
 
+  ////// ------------- toggle funko availability ------------------- /////////////
+
+  toggleFunkoAvailability = () => {
+    api.toggleFunkoOnTrade(
+      this.state.selectedFunko.id,
+      !this.state.selectedFunko.available_to_trade
+    );
+    this.setState({
+      selectedFunko: {
+        ...this.state.selectedFunko,
+        available_to_trade: !this.state.selectedFunko.available_to_trade
+      }
+    });
+  };
+
   ////// ------------- remove funko ------------------- /////////////
 
   removeFromWishlist = () => {
@@ -414,7 +429,8 @@ class App extends Component {
   funkoPageCollection = props => {
     return (
       <FunkoPageCollection
-        funko={this.state.selectedFunko.funko}
+        toggleFunkoAvailability={this.toggleFunkoAvailability}
+        selectedFunko={this.state.selectedFunko}
         removeFromCollection={this.removeFromCollection}
         {...props}
       />
@@ -477,7 +493,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <NavBar
           loggedIn={this.state.loggedIn}
           onLoginClicked={this.onLoginClicked}
@@ -513,7 +529,7 @@ class App extends Component {
           />
           <Route path="/result" component={this.searchResultPage} />
         </Switch>
-      </div>
+      </React.Fragment>
     );
   }
 }
