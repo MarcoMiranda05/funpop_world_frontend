@@ -85,6 +85,22 @@ const toggleFunkoOnTrade = (id, availability) => {
   }).then(resp => resp.json());
 };
 
+const funkosAvailableToTrade = id => {
+  return fetch(`${API}/funkos-to-trade?user_id=${id}`).then(resp =>
+    resp.json()
+  );
+};
+
+const myFunkosToTrade = id => {
+  return fetch(`${API}/my-funkos-to-trade?user_id=${id}`).then(resp =>
+    resp.json()
+  );
+};
+
+const myOffers = id => {
+  return fetch(`${API}/my-offers?user_id=${id}`).then(resp => resp.json());
+};
+
 export default {
   fetchFunkos,
   login,
@@ -98,5 +114,8 @@ export default {
   removeFromCollection,
   showFunkoCollection,
   searchFunkos,
-  toggleFunkoOnTrade
+  toggleFunkoOnTrade,
+  funkosAvailableToTrade,
+  myFunkosToTrade,
+  myOffers
 };

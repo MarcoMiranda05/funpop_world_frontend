@@ -21,6 +21,9 @@ class NavBar extends Component {
           </NavLink>
         </li>
         <li className="my-page">
+          <Link to={`/funkos-to-trade`}>trades</Link>
+        </li>
+        <li className="my-page">
           <Link to={`/mypage`}>my page</Link>
         </li>
         <li className="login">

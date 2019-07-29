@@ -20,6 +20,7 @@ import UserPage from "./components/UserPage";
 import api from "./util/api";
 import SearchBar from "./components/SearchBar";
 import FunkosSearchResultContainer from "./containers/FunkosSearchResultContainer";
+import FunkosToTradeContainer from "./containers/FunkosToTradeContainer";
 
 class App extends Component {
   constructor() {
@@ -489,6 +490,10 @@ class App extends Component {
       </React.Fragment>
     );
   };
+
+  funkosToTradePage = () => {
+    return <FunkosToTradeContainer currentUser={this.state.currentUser} />;
+  };
   ////// ------------- render method ------------------- /////////////
 
   render() {
@@ -528,6 +533,7 @@ class App extends Component {
             component={props => this.funkoPageCollection(props)}
           />
           <Route path="/result" component={this.searchResultPage} />
+          <Route path="/funkos-to-trade" component={this.funkosToTradePage} />
         </Switch>
       </React.Fragment>
     );

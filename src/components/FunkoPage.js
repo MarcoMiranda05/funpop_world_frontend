@@ -48,12 +48,10 @@ class FunkoPage extends Component {
           </h1>
         </div>
         <h1 className="info">{name}</h1>
-
         <div className="funko-image-div">
           <img src={image_url} alt={name} className="funko-page-img" />
           <div className="gradient" />
         </div>
-
         <div className="funko-page-details">
           <h2 className="topic">fandom:</h2>
           <h2 className="info">{fandom}</h2>
@@ -74,7 +72,6 @@ class FunkoPage extends Component {
             {exclusivity === "" ? "none" : `${exclusivity}`}
           </h2>
         </div>
-
         <div className="buttons-div">
           <button onClick={this.props.handleAddFunkoToCollection}>
             add to my collection
