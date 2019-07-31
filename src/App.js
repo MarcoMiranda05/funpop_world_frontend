@@ -23,6 +23,7 @@ import FunkosSearchResultContainer from "./containers/FunkosSearchResultContaine
 import FunkosToTradeContainer from "./containers/FunkosToTradeContainer";
 import FunkoToTradePage from "./components/FunkoToTradePage";
 import OfferPage from "./components/OfferPage";
+import Swal from "sweetalert2";
 
 class App extends Component {
   constructor() {
@@ -187,7 +188,13 @@ class App extends Component {
 
   handleAddFunkoToCollection = () => {
     if (!this.state.loggedIn) {
-      alert("You need to be logged in to add a Funko!");
+      Swal.fire({
+        title: "Error!",
+        text: "You need to be logged in to add a Funko!",
+        type: "error",
+        confirmButtonText: "okay"
+      });
+      // alert("You need to be logged in to add a Funko!");
       this.props.history.push("/");
     } else {
       api
