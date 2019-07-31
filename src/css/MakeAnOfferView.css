@@ -1,0 +1,197 @@
+.make-an-offer-container {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.incoming-funko-container {
+  width: 40%;
+}
+
+.funko-incoming-details {
+  display: inline-block;
+  height: 300px;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.incoming-funko-topic {
+  color: #333;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.incoming-funko-info {
+  color: #d33531;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.confirm-offer-container {
+  width: 20%;
+}
+
+.confirm-offer-container h3 {
+  margin: auto;
+}
+
+.confirm-offer-container button {
+  display: inline-block;
+  margin-top: 20px;
+  width: 220px;
+  border-radius: 5px;
+  font-family: "Signika", sans-serif;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #333;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.trade-image {
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.outgoing-funko-container {
+  width: 38%;
+}
+
+.funko-card-outgoing {
+  position: relative;
+  text-align: center;
+  width: 250px;
+  height: 300px;
+  overflow: hidden;
+  background-color: white;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 10px 10px #888888;
+}
+
+.funko-card-outgoing:hover {
+  cursor: pointer;
+}
+
+.funko-card-outgoing .funko-details {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 100%;
+  left: 0%;
+  background-color: #333;
+  transition: 0.5s ease;
+}
+
+.funko-card-outgoing:hover .funko-details {
+  top: 70%;
+}
+
+.funko-card-outgoing:hover .card-front {
+  top: -30%;
+}
+
+.funko-card-outgoing:hover .gradient {
+  top: -25%;
+}
+
+.funko-card-outgoing:hover .funko-img {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.funko-card-outgoing .gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.71) 100%
+  );
+  transition: 0.5s ease;
+}
+
+.my-funkos-to-trade {
+  display: inline-flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+  height: 650px;
+  width: 550px;
+  text-align: center;
+}
+
+.funko-to-trade-image {
+  width: 100%;
+  height: 100%;
+}
+
+.funko-to-trade-image-div {
+  position: relative;
+  text-align: center;
+  width: 220px;
+  height: 250px;
+  overflow: hidden;
+  background-color: white;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 10px 10px #888888;
+}
+
+.funko-to-trade-image-div .gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.71) 100%
+  );
+  transition: 0.5s ease;
+}

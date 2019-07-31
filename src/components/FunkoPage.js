@@ -6,6 +6,7 @@ import {
   NavLink
 } from "react-router-dom";
 import api from "../util/api";
+import tradeIcon from "../images/trade-icon-black.png";
 
 class FunkoPage extends Component {
   state = {

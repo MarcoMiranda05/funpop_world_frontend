@@ -16,9 +16,17 @@ class FunkosToTradeContainer extends Component {
   render() {
     return (
       <div className="funko-collection">
-        <h1 className="search-result">funkos to trade</h1>
+        <h1 className="search-result">
+          There's {this.state.funkos.length} funkos available to trade
+        </h1>
         {this.state.funkos.map(funko => {
-          return <FunkoToTradeCard key={funko.id} funko={funko} />;
+          return (
+            <FunkoToTradeCard
+              key={funko.id}
+              funko={funko}
+              selectFunkoToTrade={this.props.selectFunkoToTrade}
+            />
+          );
         })}
       </div>
     );

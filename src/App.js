@@ -21,6 +21,8 @@ import api from "./util/api";
 import SearchBar from "./components/SearchBar";
 import FunkosSearchResultContainer from "./containers/FunkosSearchResultContainer";
 import FunkosToTradeContainer from "./containers/FunkosToTradeContainer";
+import FunkoToTradePage from "./components/FunkoToTradePage";
+import OfferPage from "./components/OfferPage";
 
 class App extends Component {
   constructor() {
@@ -164,6 +166,14 @@ class App extends Component {
     api.showFunkoCollection(e.target.parentNode.id).then(data => {
       this.setState({ selectedFunko: data }, () =>
         this.props.history.push(`/collectfunko/${data.id}`)
+      );
+    });
+  };
+
+  selectFunkoToTrade = e => {
+    api.showFunkoCollection(e.target.parentNode.id).then(data => {
+      this.setState({ selectedFunko: data }, () =>
+        this.props.history.push(`/funko-to-trade/${data.id}`)
       );
     });
   };
@@ -492,7 +502,26 @@ class App extends Component {
   };
 
   funkosToTradePage = () => {
-    return <FunkosToTradeContainer currentUser={this.state.currentUser} />;
+    return (
+      <FunkosToTradeContainer
+        currentUser={this.state.currentUser}
+        selectFunkoToTrade={this.selectFunkoToTrade}
+      />
+    );
+  };
+
+  funkoToTradeShowPage = props => {
+    return (
+      <FunkoToTradePage
+        selectedFunko={this.state.selectedFunko}
+        currentUser={this.state.currentUser}
+        {...props}
+      />
+    );
+  };
+
+  offerPage = props => {
+    return <OfferPage id={props.match.params.id} {...props} />;
   };
   ////// ------------- render method ------------------- /////////////
 
@@ -534,6 +563,11 @@ class App extends Component {
           />
           <Route path="/result" component={this.searchResultPage} />
           <Route path="/funkos-to-trade" component={this.funkosToTradePage} />
+          <Route
+            path="/funko-to-trade/:id"
+            component={this.funkoToTradeShowPage}
+          />
+          <Route path="/offer/:id" component={this.offerPage} />
         </Switch>
       </React.Fragment>
     );

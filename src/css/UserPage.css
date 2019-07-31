@@ -24,15 +24,38 @@ a {
 .user-div {
   display: inline-flex;
   padding: 10px;
-  width: 600px;
+  width: 50%;
   height: 250px;
 }
 
-.trades-div {
+.my-offers {
+  width: 40%;
+}
+
+.trade-offers-div {
   display: inline-flex;
-  padding: 10px;
-  width: 600px;
+  flex-wrap: wrap;
+  overflow: scroll;
   height: 250px;
+  width: 600px;
+  border-style: solid;
+  border-color: #d33531;
+  border-radius: 20px;
+  box-shadow: 10px 15px 15px #888888;
+}
+
+.trade-offers-div h4 {
+  margin: 0px;
+  margin-left: 5px;
+  width: 100%;
+  height: 30px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  color: #333;
+}
+
+.trade-offers-div h4:hover {
+  color: #d33531;
 }
 
 .user-infos {

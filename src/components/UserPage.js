@@ -5,8 +5,20 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import api from "../util/api";
 
 class UserPage extends Component {
+  state = {
+    offers: []
+  };
+
+  componentDidMount() {
+    api.myOffers(this.props.user.id).then(data => {
+      this.setState({ offers: data });
+      console.log(data);
+    });
+  }
+
   render() {
     const { username, pic_url, email, city, country } = this.props.user;
 
@@ -21,8 +33,18 @@ class UserPage extends Component {
             <p>{country}</p>
           </div>
         </div>
-        <div className="trades-div">
-          <h1 />
+        <div className="my-offers">
+          <h2 className="title">trade offers</h2>
+          <div className="trade-offers-div">
+            {this.state.offers.map(offer => (
+              <Link to={`/offer/${offer.id}`}>
+                <h4>
+                  👑 check the trade offer {offer.incoming_funko.funko.name} X{" "}
+                  {offer.outcoming_funko.funko.name}
+                </h4>
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="my-collection">
           <Link to={"/mycollection"}>

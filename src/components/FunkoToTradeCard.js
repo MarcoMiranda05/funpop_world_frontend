@@ -6,7 +6,7 @@ class FunkoToTradeCard extends Component {
     return (
       <div
         className="funko-card"
-        onClick={this.props.selectWishFunko}
+        onClick={this.props.selectFunkoToTrade}
         id={this.props.funko.id}
         funkoid={id}
       >

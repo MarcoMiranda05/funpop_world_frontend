@@ -101,6 +101,23 @@ const myOffers = id => {
   return fetch(`${API}/my-offers?user_id=${id}`).then(resp => resp.json());
 };
 
+const makeAnOffer = (incomingFunko, outgoingFunko) => {
+  return fetch(`${API}/offers`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      offer: {
+        incoming_funko_id: incomingFunko,
+        outcoming_funko_id: outgoingFunko
+      }
+    })
+  }).then(res => res.json());
+};
+
+const showOffer = id => {
+  return fetch(`${API}/offers/${id}`).then(resp => resp.json());
+};
+
 export default {
   fetchFunkos,
   login,
@@ -117,5 +134,7 @@ export default {
   toggleFunkoOnTrade,
   funkosAvailableToTrade,
   myFunkosToTrade,
-  myOffers
+  myOffers,
+  makeAnOffer,
+  showOffer
 };

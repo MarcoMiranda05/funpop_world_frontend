@@ -5,6 +5,7 @@
 @import "./css/UserPage.css";
 @import "./css/FunkoPageWishlist.css";
 @import "./css/SearchBar.css";
+@import "./css/MakeAnOfferView.css";
 
 * {
   background-color: white;
