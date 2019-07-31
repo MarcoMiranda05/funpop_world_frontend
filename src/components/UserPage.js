@@ -9,87 +9,133 @@ import api from "../util/api";
 
 class UserPage extends Component {
   state = {
-    offers: []
+    offers: [],
+    ready: false
   };
 
   componentDidMount() {
     api.myOffers(this.props.user.id).then(data => {
-      this.setState({ offers: data });
+      // debugger;
+      this.setState({ offers: data, ready: true });
       console.log(data);
     });
   }
 
-  render() {
-    const { username, pic_url, email, city, country } = this.props.user;
+  incomingOffers = () => {
+    return this.state.offers
+      .filter(offer => {
+        if (
+          offer &&
+          offer.incoming_funko &&
+          offer.incoming_funko.user &&
+          offer.outcoming_funko &&
+          offer.outcoming_funko.user
+        ) {
+          return offer.incoming_funko.user.id === this.props.user.id;
+        }
+      })
+      .map(offer => (
+        <Link to={`/offer/${offer.id}`}>
+          <h4>👑 You have an offer for {offer.incoming_funko.funko.name}</h4>
+        </Link>
+      ));
+  };
 
-    return (
-      <div className="mypage">
-        <div className="user-div">
-          <img src={pic_url} alt="avatar" className="user_pic" />
-          <div className="user-infos">
-            <h3>{username}</h3>
-            <a href={`mailto:${email}`}>{email}</a>
-            <p>{city}</p>
-            <p>{country}</p>
+  outgoingOffers = () => {
+    return this.state.offers
+      .filter(offer => {
+        if (
+          offer &&
+          offer.incoming_funko &&
+          offer.incoming_funko.user &&
+          offer.outcoming_funko &&
+          offer.outcoming_funko.user
+        ) {
+          return offer.incoming_funko.user.id !== this.props.user.id;
+        }
+      })
+      .map(offer => (
+        <Link to={`/offer/${offer.id}`}>
+          <h4> 👑 You made an offer for {offer.incoming_funko.funko.name}</h4>
+        </Link>
+      ));
+  };
+
+  render() {
+    const renderUserPage = () => {
+      const { username, pic_url, email, city, country } = this.props.user;
+
+      return (
+        <div className="mypage">
+          <div className="user-div">
+            <img src={pic_url} alt="avatar" className="user_pic" />
+            <div className="user-infos">
+              <h3>{username}</h3>
+              <a href={`mailto:${email}`}>{email}</a>
+              <p>{city}</p>
+              <p>{country}</p>
+            </div>
           </div>
-        </div>
-        <div className="my-offers">
-          <h2 className="title">trade offers</h2>
-          <div className="trade-offers-div">
-            {this.state.offers.map(offer => (
-              <Link to={`/offer/${offer.id}`}>
-                <h4>
-                  👑 check the trade offer {offer.incoming_funko.funko.name} X{" "}
-                  {offer.outcoming_funko.funko.name}
-                </h4>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="my-collection">
-          <Link to={"/mycollection"}>
-            <h2 className="title">my collection</h2>
-          </Link>
-          <div className="collection-div">
-            {this.props.collection.map(collection => (
-              <div
-                className="funko-card-mypage"
-                onClick={this.props.selectCollectFunko}
-                id={collection.id}
-              >
-                <img className="funko-img" src={collection.funko.image_url} />
-                <div className="gradient" />
-                <div className="funko-details">
-                  <h3>{collection.funko.name}</h3>
-                  <h4>{collection.funko.fandom}</h4>
-                </div>
+          <div className="my-offers">
+            <h2 className="title">trade offers</h2>
+            <div className="trade-offers-div">
+              <div className="in-and-out-offers">
+                <div className="box-title">inbox</div>
+                {this.incomingOffers()}
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="my-wishlist">
-          <Link to={"/mywishlist"}>
-            <h2 className="title">my wishlist</h2>
-          </Link>
-          <div className="wishlist-div">
-            {this.props.wishlist.map(wishlist => (
-              <div
-                className="funko-card-mypage"
-                onClick={this.props.selectWishFunko}
-                id={wishlist.id}
-              >
-                <img className="funko-img" src={wishlist.funko.image_url} />
-                <div className="gradient" />
-                <div className="funko-details">
-                  <h3>{wishlist.funko.name}</h3>
-                  <h4>{wishlist.funko.fandom}</h4>
-                </div>
+              <div className="in-and-out-offers">
+                <div className="box-title">sent</div>
+                {this.outgoingOffers()}
               </div>
-            ))}
+            </div>
+          </div>
+          <div className="my-collection">
+            <Link to={"/mycollection"}>
+              <h2 className="title">my collection</h2>
+            </Link>
+            <div className="collection-div">
+              {this.props.collection.map(collection => (
+                <div
+                  className="funko-card-mypage"
+                  onClick={this.props.selectCollectFunko}
+                  id={collection.id}
+                >
+                  <img className="funko-img" src={collection.funko.image_url} />
+                  <div className="gradient" />
+                  <div className="funko-details">
+                    <h3>{collection.funko.name}</h3>
+                    <h4>{collection.funko.fandom}</h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="my-wishlist">
+            <Link to={"/mywishlist"}>
+              <h2 className="title">my wishlist</h2>
+            </Link>
+            <div className="wishlist-div">
+              {this.props.wishlist.map(wishlist => (
+                <div
+                  className="funko-card-mypage"
+                  onClick={this.props.selectWishFunko}
+                  id={wishlist.id}
+                >
+                  <img className="funko-img" src={wishlist.funko.image_url} />
+                  <div className="gradient" />
+                  <div className="funko-details">
+                    <h3>{wishlist.funko.name}</h3>
+                    <h4>{wishlist.funko.fandom}</h4>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    };
+
+    return this.state.ready ? renderUserPage() : <div>loading</div>;
   }
 }
 

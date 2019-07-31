@@ -57,6 +57,14 @@
   width: 200px;
   margin-top: 10px;
   margin-bottom: 5px;
+  animation: rotate infinite 10s alternate;
+  background-color: transparent;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(360deg);
+  }
 }
 
 .outgoing-funko-container {

@@ -30,7 +30,7 @@ class FunkoToTradePage extends Component {
 
   makeAnOffer = () => {
     api.makeAnOffer(this.props.selectedFunko.id, this.state.choosenFunko.id);
-    this.props.history.push("/mypage");
+    this.props.history.push("/");
   };
 
   render() {

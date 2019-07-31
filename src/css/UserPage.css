@@ -24,20 +24,20 @@ a {
 .user-div {
   display: inline-flex;
   padding: 10px;
-  width: 50%;
+  width: 40%;
   height: 250px;
 }
 
 .my-offers {
-  width: 40%;
+  width: 50%;
 }
 
 .trade-offers-div {
-  display: inline-flex;
+  display: block;
   flex-wrap: wrap;
   overflow: scroll;
-  height: 250px;
-  width: 600px;
+  height: 200px;
+  width: 780px;
   border-style: solid;
   border-color: #d33531;
   border-radius: 20px;
@@ -48,13 +48,28 @@ a {
   margin: 0px;
   margin-left: 5px;
   width: 100%;
-  height: 30px;
   padding-bottom: 0px;
   padding-top: 0px;
   color: #333;
 }
 
 .trade-offers-div h4:hover {
+  color: #d33531;
+}
+
+.in-and-out-offers {
+  width: 50%;
+  overflow: scroll;
+  display: inline-block;
+  flex-wrap: wrap;
+  height: 200px;
+}
+
+.box-title {
+  padding-left: 7px;
+  padding-top: 2px;
+  font-size: 18px;
+  font-weight: bold;
   color: #d33531;
 }
 

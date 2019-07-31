@@ -62,6 +62,13 @@ class App extends Component {
     });
   };
 
+  handleCategories = e => {
+    api
+      .funkosByCategory(e.target.name)
+      .then(data => this.setState({ searchResult: data }))
+      .then(() => this.props.history.push("/result"));
+  };
+
   handleSelect = e => {
     this.setState({
       searchTerm: e.target.id
@@ -88,19 +95,17 @@ class App extends Component {
   handleCurrentUser = () => {
     const token = localStorage.getItem("token");
     if (token) {
-      api
-        .getCurrentUser(token)
-        .then(user => {
-          this.setState({
-            loggedIn: true,
-            username: user.username,
-            currentUser: user,
-            password: "",
-            collection: user.collections,
-            wishlist: user.wishlists
-          });
-        })
-        .then(() => this.props.history.push("/mypage"));
+      api.getCurrentUser(token).then(user => {
+        this.setState({
+          loggedIn: true,
+          username: user.username,
+          currentUser: user,
+          password: "",
+          collection: user.collections,
+          wishlist: user.wishlists
+        });
+      });
+      // .then(() => this.props.history.push("/mypage"));
     }
   };
 
@@ -449,6 +454,7 @@ class App extends Component {
   };
 
   userPage = () => {
+    // debugger;
     return (
       <React.Fragment>
         <SearchBar
@@ -521,7 +527,13 @@ class App extends Component {
   };
 
   offerPage = props => {
-    return <OfferPage id={props.match.params.id} {...props} />;
+    return (
+      <OfferPage
+        id={props.match.params.id}
+        currentUser={this.state.currentUser}
+        {...props}
+      />
+    );
   };
   ////// ------------- render method ------------------- /////////////
 
@@ -536,6 +548,7 @@ class App extends Component {
           password={this.state.password}
           username={this.state.username}
           handleChange={this.handleChange}
+          handleCategories={this.handleCategories}
         />
         <Switch>
           <Route path="/" exact component={this.home} />

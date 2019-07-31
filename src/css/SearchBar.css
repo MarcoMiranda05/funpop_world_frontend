@@ -12,7 +12,7 @@
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   margin-left: 30%;
-
+  z-index: 1;
   display: block;
   margin-top: 10px;
   color: black;

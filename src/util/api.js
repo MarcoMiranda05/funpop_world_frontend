@@ -118,6 +118,26 @@ const showOffer = id => {
   return fetch(`${API}/offers/${id}`).then(resp => resp.json());
 };
 
+const toggleOfferStatus = (id, newStatus) => {
+  return fetch(`${API}/offers/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ offer: { status: newStatus } })
+  }).then(resp => resp.json());
+};
+
+const rejectOffer = id => {
+  return fetch(`${API}/offers/${id}`, {
+    method: "DELETE"
+  }).then(res => res.json());
+};
+
+const funkosByCategory = searchTerm => {
+  return fetch(`${API}/category?searchterm=${searchTerm}`).then(resp =>
+    resp.json()
+  );
+};
+
 export default {
   fetchFunkos,
   login,
@@ -136,5 +156,8 @@ export default {
   myFunkosToTrade,
   myOffers,
   makeAnOffer,
-  showOffer
+  showOffer,
+  toggleOfferStatus,
+  rejectOffer,
+  funkosByCategory
 };

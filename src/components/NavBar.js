@@ -74,43 +74,18 @@ class NavBar extends Component {
           <li className="home">
             <Link to="/">home</Link>
           </li>
-          <li
-            className="categories"
-            onClick={e =>
-              this.props.handleChange({
-                target: { name: e.target.name, value: e.target.textContent }
-              })
-            }
-          >
+          <li className="categories" onClick={this.props.handleCategories}>
             <a className="dropbtn">categories</a>
             <div className="categories-content">
-              <a name="searchTerm" value="animation">
-                animation
-              </a>
-              <a name="searchTerm" value="funko">
-                funko
-              </a>
-              <a name="searchTerm" value="games">
-                games
-              </a>
-              <a name="searchTerm" value="heroes">
-                heroes
-              </a>
-              <a name="searchTerm" value="movies">
-                movies
-              </a>
-              <a name="searchTerm" value="music">
-                music
-              </a>
-              <a name="searchTerm" value="sports">
-                sports
-              </a>
-              <a name="searchTerm" value="television">
-                television
-              </a>
-              <a name="searchTerm" value="other">
-                other
-              </a>
+              <a name="Animation">animation</a>
+              <a name="Funko">funko</a>
+              <a name="Games">games</a>
+              <a name="Heroes">heroes</a>
+              <a name="Movies">movies</a>
+              <a name="Music">music</a>
+              <a name="Sports">sports</a>
+              <a name="Television">television</a>
+              <a name="Other">other</a>
             </div>
           </li>
           <li>

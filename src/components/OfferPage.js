@@ -20,6 +20,41 @@ class OfferPage extends Component {
     });
   }
 
+  acceptOffer = e => {
+    api.toggleOfferStatus(this.state.offer.id, e.target.name).then(data => {
+      api.removeFromCollection(data.incoming_funko.id);
+      api.removeFromCollection(data.outcoming_funko.id);
+      api.addFunkoToCollection(
+        data.outcoming_funko.user.id,
+        data.incoming_funko.funko.id
+      );
+      api.addFunkoToCollection(
+        data.incoming_funko.user.id,
+        data.outcoming_funko.funko.id
+      );
+      this.props.history.push("/");
+    });
+  };
+
+  rejectOrCancelOffer = () => {
+    api.rejectOffer(this.state.offer.id).then(this.props.history.push("/"));
+  };
+
+  incomingButtons = () => {
+    return (
+      <React.Fragment>
+        <button onClick={this.acceptOffer} name="accepted">
+          accept offer
+        </button>
+        <button onClick={this.rejectOrCancelOffer}>reject offer</button>
+      </React.Fragment>
+    );
+  };
+
+  outcomingButtons = () => {
+    return <button onClick={this.rejectOrCancelOffer}>cancel offer</button>;
+  };
+
   render() {
     const renderOffer = () => {
       const parts = this.state.offer.incoming_funko.funko.release_date.split(
@@ -107,9 +142,11 @@ class OfferPage extends Component {
           </div>
           <div className="confirm-offer-container">
             <img src={tradeIcon} alt="transfer-logo" className="trade-image" />
-            <button onClick={console.log("hello")}>accept offer</button>
-            <button onClick={console.log("hello")}>reject offer</button>
-            <Link to={"/mypage"}>
+            {this.state.offer.incoming_funko.user.id ===
+            this.props.currentUser.id
+              ? this.incomingButtons()
+              : this.outcomingButtons()}
+            <Link to={"/funkos-to-trade"}>
               <button>see all funkos on trade</button>
             </Link>
           </div>
