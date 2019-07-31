@@ -35,15 +35,15 @@ class FunkoToTradePage extends Component {
       .then(data => {
         if (data.error) {
           Swal.fire({
-            title: "Error!",
+            title: "Ooops...",
             text: "You need to select a Funko to make the offer!",
             type: "error",
             confirmButtonText: "okay"
           });
         } else {
           Swal.fire({
-            title: "Success!",
-            text: "You need to select a Funko to make the offer!",
+            title: "Legen - wait for it - dary!",
+            text: "Your offer has been placed",
             type: "success",
             confirmButtonText: "okay"
           });
