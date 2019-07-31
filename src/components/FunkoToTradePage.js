@@ -8,6 +8,7 @@ import {
 import api from "../util/api";
 import tradeIcon from "../images/trade-icon-black.png";
 import blankfunko from "../images/funkoblank.png";
+import Swal from "sweetalert2";
 
 class FunkoToTradePage extends Component {
   state = {
@@ -29,8 +30,26 @@ class FunkoToTradePage extends Component {
   };
 
   makeAnOffer = () => {
-    api.makeAnOffer(this.props.selectedFunko.id, this.state.choosenFunko.id);
-    this.props.history.push("/");
+    api
+      .makeAnOffer(this.props.selectedFunko.id, this.state.choosenFunko.id)
+      .then(data => {
+        if (data.error) {
+          Swal.fire({
+            title: "Error!",
+            text: "You need to select a Funko to make the offer!",
+            type: "error",
+            confirmButtonText: "okay"
+          });
+        } else {
+          Swal.fire({
+            title: "Success!",
+            text: "You need to select a Funko to make the offer!",
+            type: "success",
+            confirmButtonText: "okay"
+          });
+        }
+        this.props.history.push("/");
+      });
   };
 
   render() {
