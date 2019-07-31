@@ -47,8 +47,8 @@ class FunkoToTradePage extends Component {
             type: "success",
             confirmButtonText: "okay"
           });
+          this.props.history.push("/");
         }
-        this.props.history.push("/");
       });
   };
 
