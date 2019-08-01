@@ -35,13 +35,12 @@ class SignUpForm extends Component {
           title: "Ooops...",
           text: `Something went wrong: ${data.error.join("! ")}`,
           type: "error",
-          confirmButtonText: "okay",
-          animation: true
+          confirmButtonText: "okay"
         });
       } else {
         Swal.fire({
           title: "WELCOME TO FUNPOP! WORLD",
-          showConfirmButtonText: false,
+          showConfirmButton: false,
           timer: 1500
         });
         localStorage.setItem("token", data.jwt);

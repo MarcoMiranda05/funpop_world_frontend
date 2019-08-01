@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import api from "../util/api";
 import tradeIcon from "../images/trade-icon-black.png";
+import Swal from "sweetalert2";
 
 class OfferPage extends Component {
   state = {
@@ -32,12 +33,43 @@ class OfferPage extends Component {
         data.incoming_funko.user.id,
         data.outcoming_funko.funko.id
       );
+      Swal.fire({
+        title: "Amazing!!!",
+        text: `Offer has been acceptd! Now you have ${
+          data.outcoming_funko.funko.name
+        } in you collection!`,
+        type: "success",
+        showConfirmButtonText: false,
+        timer: 1500
+      });
       this.props.history.push("/");
     });
   };
 
-  rejectOrCancelOffer = () => {
-    api.rejectOffer(this.state.offer.id).then(this.props.history.push("/"));
+  rejectOffer = () => {
+    api.rejectOffer(this.state.offer.id).then(() => {
+      Swal.fire({
+        title: "Okay!!!",
+        text: `Offer has been rejected!`,
+        type: "success",
+        showConfirmButtonText: false,
+        timer: 1500
+      });
+      this.props.history.push("/");
+    });
+  };
+
+  cancelOffer = () => {
+    api.rejectOffer(this.state.offer.id).then(() => {
+      Swal.fire({
+        title: "Okay!!!",
+        text: `Offer has been cancelled!`,
+        type: "success",
+        showConfirmButtonText: false,
+        timer: 1500
+      });
+      this.props.history.push("/");
+    });
   };
 
   incomingButtons = () => {
@@ -46,13 +78,13 @@ class OfferPage extends Component {
         <button onClick={this.acceptOffer} name="accepted">
           accept offer
         </button>
-        <button onClick={this.rejectOrCancelOffer}>reject offer</button>
+        <button onClick={this.rejectOffer}>reject offer</button>
       </React.Fragment>
     );
   };
 
   outcomingButtons = () => {
-    return <button onClick={this.rejectOrCancelOffer}>cancel offer</button>;
+    return <button onClick={this.cancelOffer}>cancel offer</button>;
   };
 
   render() {

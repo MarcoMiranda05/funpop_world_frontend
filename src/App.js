@@ -215,7 +215,7 @@ class App extends Component {
               this.state.selectedFunko.name
             } to your collection!`,
             type: "success",
-            showConfirmButtonText: false,
+            showConfirmButton: false,
             timer: 1500
           });
           this.props.history.push("/mypage");
@@ -247,7 +247,7 @@ class App extends Component {
               this.state.selectedFunko.name
             } to your wishlist!`,
             type: "success",
-            showConfirmButtonText: false,
+            showConfirmButton: false,
             timer: 1500
           });
           this.props.history.push("/mypage");
@@ -278,7 +278,7 @@ class App extends Component {
               this.state.selectedFunko.funko.name
             } to your collection!`,
             type: "success",
-            showConfirmButtonText: false,
+            showConfirmButton: false,
             timer: 1500
           });
           this.props.history.push("/mycollection");
@@ -315,7 +315,7 @@ class App extends Component {
           this.state.selectedFunko.funko.name
         } from your wishlist!`,
         type: "success",
-        showConfirmButtonText: false,
+        showConfirmButton: false,
         timer: 1500
       });
       this.props.history.push("/mywishlist");
@@ -334,7 +334,7 @@ class App extends Component {
           this.state.selectedFunko.funko.name
         } from your collection!`,
         type: "success",
-        showConfirmButtonText: false,
+        showConfirmButton: false,
         timer: 1500
       });
       this.props.history.push("/mycollection");
