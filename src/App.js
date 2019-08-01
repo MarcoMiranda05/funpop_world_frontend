@@ -50,7 +50,7 @@ class App extends Component {
   componentDidMount() {
     let funkosArray = [];
     api.fetchFunkos().then(data => {
-      funkosArray = suflle(data);
+      funkosArray = suffle(data);
       this.setState({
         funkos: funkosArray,
         selection: funkosArray.slice(0, this.index)
