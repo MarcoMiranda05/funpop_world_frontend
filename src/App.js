@@ -239,6 +239,9 @@ class App extends Component {
               this.state.selectedFunko.name
             } to your wishlist!`,
             showConfirmButton: false,
+            imageUrl: `${this.state.selectedFunko.image_url}`,
+            imageWidth: 150,
+            imageHeight: 200,
             timer: 2500
           });
           this.props.history.push("/mypage");
