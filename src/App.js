@@ -309,12 +309,7 @@ class App extends Component {
         remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
       );
       this.setState({ wishlist: newArray });
-      Swal.fire({
-        title: "Cool!!!",
-        text: "You have removed a Funko from your wishlist",
-        type: "success",
-        confirmButtonText: "okay"
-      });
+      Swal.fire("COol!!", "You clicked the button!", "success");
       // Swal.fire({
       //   title: "Cool!!!",
       //   text: `You have removed ${
