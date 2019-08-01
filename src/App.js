@@ -439,7 +439,15 @@ class App extends Component {
           dataLength={this.state.selection.length}
           next={this.fetchMoreFunkos}
           hasMore={this.state.hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={
+            <div className="loading-div">
+              <h3>loading...</h3>
+              <img
+                className="clock"
+                src="https://img.icons8.com/color/48/000000/empty-hourglass.png"
+              />
+            </div>
+          }
         >
           <FunkosCardContainer
             funkos={this.state.selection}

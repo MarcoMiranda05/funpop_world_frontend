@@ -16,7 +16,7 @@ class UserPage extends Component {
   componentDidMount() {
     api.myOffers(this.props.user.id).then(data => {
       // debugger;
-      this.setState({ offers: data });
+      this.setState({ offers: data, ready: true });
       console.log(data);
     });
   }

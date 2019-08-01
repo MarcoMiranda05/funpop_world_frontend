@@ -257,7 +257,17 @@ class OfferPage extends Component {
       );
     };
 
-    return this.state.ready ? renderOffer() : <div>loading</div>;
+    return this.state.ready ? (
+      renderOffer()
+    ) : (
+      <div className="loading-div">
+        <h3>loading...</h3>
+        <img
+          className="clock"
+          src="https://img.icons8.com/color/48/000000/empty-hourglass.png"
+        />
+      </div>
+    );
   }
 }
 

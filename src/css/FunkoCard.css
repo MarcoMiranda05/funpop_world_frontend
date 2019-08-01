@@ -137,7 +137,7 @@
 }
 
 .clock {
-  margin-left: 2px;
+  margin-left: 4px;
   animation: rotate infinite 5s;
   background-color: transparent;
 }
