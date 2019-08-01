@@ -38,7 +38,7 @@ class SignUpForm extends Component {
           confirmButtonText: "okay",
           animation: false,
           customClass: {
-            popup: "animated tada"
+            popup: "tada"
           }
         });
       } else {
