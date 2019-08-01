@@ -138,7 +138,7 @@ class UserPage extends Component {
     return this.state.ready ? (
       renderUserPage()
     ) : (
-      <div>
+      <div className="loading-div">
         <h3>loading...</h3>
         <img
           className="clock"
