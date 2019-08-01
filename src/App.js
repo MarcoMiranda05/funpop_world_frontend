@@ -211,9 +211,10 @@ class App extends Component {
           });
           Swal.fire({
             type: "success",
-            title: "Amazing, you have add a Funko to your collection!",
-            showConfirmButton: false,
-            timer: 1500
+            title: `Amazing, you have add ${
+              this.state.selectedFunko.name
+            } to your collection!`,
+            confirmButtonText: "okay"
           });
           this.props.history.push("/mypage");
         });
