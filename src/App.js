@@ -355,57 +355,57 @@ class App extends Component {
     );
   };
 
-  ////// ------------- sort ------------------- /////////////
+  // ////// ------------- sort ------------------- /////////////
 
-  handleSort = e => {
-    switch (e.target.value) {
-      case "newest":
-        this.setState({
-          funkos: this.state.funkos.sort((a, b) => {
-            const a_parts = a.release_date.split("-");
-            const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
-            const b_parts = b.release_date.split("-");
-            const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
-            return b_date - a_date;
-          }),
-          selection: this.state.funkos.slice(0, this.index)
-        });
-        break;
+  // handleSort = e => {
+  //   switch (e.target.value) {
+  //     case "newest":
+  //       this.setState({
+  //         funkos: this.state.funkos.sort((a, b) => {
+  //           const a_parts = a.release_date.split("-");
+  //           const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
+  //           const b_parts = b.release_date.split("-");
+  //           const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
+  //           return b_date - a_date;
+  //         }),
+  //         selection: this.state.funkos.slice(0, this.index)
+  //       });
+  //       break;
 
-      case "oldest":
-        this.setState({
-          funkos: this.state.funkos.sort((a, b) => {
-            const a_parts = a.release_date.split("-");
-            const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
-            const b_parts = b.release_date.split("-");
-            const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
-            return a_date - b_date;
-          }),
-          selection: this.state.funkos.slice(0, this.index)
-        });
-        break;
+  //     case "oldest":
+  //       this.setState({
+  //         funkos: this.state.funkos.sort((a, b) => {
+  //           const a_parts = a.release_date.split("-");
+  //           const a_date = new Date(a_parts[0], a_parts[1] - 1, a_parts[2]);
+  //           const b_parts = b.release_date.split("-");
+  //           const b_date = new Date(b_parts[0], b_parts[1] - 1, b_parts[2]);
+  //           return a_date - b_date;
+  //         }),
+  //         selection: this.state.funkos.slice(0, this.index)
+  //       });
+  //       break;
 
-      case "name":
-        this.setState({
-          funkos: this.state.funkos.sort((a, b) =>
-            a.name.localeCompare(b.name)
-          ),
-          selection: this.state.funkos.slice(0, this.index)
-        });
-        break;
+  //     case "name":
+  //       this.setState({
+  //         funkos: this.state.funkos.sort((a, b) =>
+  //           a.name.localeCompare(b.name)
+  //         ),
+  //         selection: this.state.funkos.slice(0, this.index)
+  //       });
+  //       break;
 
-      case "name_back":
-        this.setState({
-          funkos: this.state.funkos.sort((a, b) =>
-            b.name.localeCompare(a.name)
-          ),
-          selection: this.state.funkos.slice(0, this.index)
-        });
-        break;
+  //     case "name_back":
+  //       this.setState({
+  //         funkos: this.state.funkos.sort((a, b) =>
+  //           b.name.localeCompare(a.name)
+  //         ),
+  //         selection: this.state.funkos.slice(0, this.index)
+  //       });
+  //       break;
 
-      default:
-    }
-  };
+  //     default:
+  //   }
+  // };
 
   ////// ------------- infinite scroll ------------------- /////////////
 

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const FunkosCardContainer = props => {
   return (
     <div className="funko-collection">
-      <label className="sort">
+      {/* <label className="sort">
         <select onChange={props.handleSort}>
           <option value="newest">newest</option>
           <option value="oldest">oldest</option>
@@ -15,7 +15,7 @@ const FunkosCardContainer = props => {
         <strong>
           <img src="https://image.flaticon.com/icons/svg/31/31063.svg" />
         </strong>
-      </label>
+      </label> */}
       {props.funkos.map(funko => {
         return (
           <FunkoCard
