@@ -6,14 +6,9 @@
 @import "./css/FunkoPageWishlist.css";
 @import "./css/SearchBar.css";
 @import "./css/MakeAnOfferView.css";
+@import "./css/Footer.css";
 
 * {
   background-color: white;
   font-family: "Signika", sans-serif;
-}
-
-body {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
 }

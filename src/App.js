@@ -23,6 +23,7 @@ import FunkosSearchResultContainer from "./containers/FunkosSearchResultContaine
 import FunkosToTradeContainer from "./containers/FunkosToTradeContainer";
 import FunkoToTradePage from "./components/FunkoToTradePage";
 import OfferPage from "./components/OfferPage";
+import Footer from "./containers/Footer";
 import Swal from "sweetalert2";
 
 class App extends Component {
@@ -629,6 +630,7 @@ class App extends Component {
           />
           <Route path="/offer/:id" component={this.offerPage} />
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }
