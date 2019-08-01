@@ -38,11 +38,6 @@ class SignUpForm extends Component {
           confirmButtonText: "okay"
         });
       } else {
-        // Swal.fire({
-        //   title: "WELCOME TO FUNPOP! WORLD",
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // });
         localStorage.setItem("token", data.jwt);
         this.props.handleCurrentUser();
         this.props.history.push("/");
