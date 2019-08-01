@@ -210,10 +210,9 @@ class App extends Component {
             collection: [data, ...this.state.collection]
           });
           Swal.fire({
+            title: "Cool!!!",
+            text: "You add a Funko to your collection!",
             type: "success",
-            title: `Amazing, you have add ${
-              this.state.selectedFunko.name
-            } to your collection!`,
             confirmButtonText: "okay"
           });
           this.props.history.push("/mypage");
