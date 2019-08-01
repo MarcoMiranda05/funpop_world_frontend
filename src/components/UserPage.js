@@ -16,7 +16,7 @@ class UserPage extends Component {
   componentDidMount() {
     api.myOffers(this.props.user.id).then(data => {
       // debugger;
-      this.setState({ offers: data, ready: true });
+      this.setState({ offers: data });
       console.log(data);
     });
   }
@@ -135,7 +135,17 @@ class UserPage extends Component {
       );
     };
 
-    return this.state.ready ? renderUserPage() : <div>loading</div>;
+    return this.state.ready ? (
+      renderUserPage()
+    ) : (
+      <div>
+        <h3>loading...</h3>
+        <img
+          className="clock"
+          src="https://img.icons8.com/color/48/000000/empty-hourglass.png"
+        />
+      </div>
+    );
   }
 }
 

@@ -127,3 +127,14 @@
   margin-left: 5px;
   margin-top: 5px;
 }
+
+.loading-div {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.clock {
+  animation: rotate infinite 5s;
+}
