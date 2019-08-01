@@ -210,17 +210,12 @@ class App extends Component {
             collection: [data, ...this.state.collection]
           });
           Swal.fire({
-            title: "Cool!!!",
-            text: `Amazing, you have add ${
+            title: `Amazing, you have add ${
               this.state.selectedFunko.name
             } to your collection!`,
             type: "success",
-            imageUrl: `${this.state.selectedFunko.image_url}`,
-            imageWidth: 250,
-            imageHeight: 300,
-            imageAlt: "funko image",
             showConfirmButton: false,
-            timer: 2500
+            timer: 1500
           });
           this.props.history.push("/mypage");
         });
