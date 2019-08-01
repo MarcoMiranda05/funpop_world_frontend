@@ -48,11 +48,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    api
-      .fetchFunkos()
-      .then(data =>
-        this.setState({ funkos: data, selection: data.slice(0, this.index) })
-      );
+    let funkosArray = [];
+    api.fetchFunkos().then(data => {
+      funkosArray = suflle(data);
+      this.setState({
+        funkos: funkosArray,
+        selection: funkosArray.slice(0, this.index)
+      });
+    });
     this.handleCurrentUser();
   }
 
