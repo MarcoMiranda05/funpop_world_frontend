@@ -41,13 +41,13 @@ class FunkoToTradePage extends Component {
             confirmButtonText: "okay"
           });
         } else {
-          // Swal.fire({
-          //   title: "Cool!!!",
-          //   text: "Your offer has been placed",
-          //   type: "success",
-          //   showConfirmButtonText: false,
-          //   timer: 1500
-          // });
+          Swal.fire({
+            title: "Cool!!!",
+            text: "Your offer has been placed",
+            type: "success",
+            showConfirmButtonText: false,
+            timer: 1500
+          });
           this.props.history.push("/");
         }
       });

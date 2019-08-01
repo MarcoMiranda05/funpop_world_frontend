@@ -1,0 +1,11 @@
+/mypage         /
+/funko/:id          /
+/result      /
+/funkos-to-trade        /
+/funko-to-trade/:id         /
+/signup-form         /
+/offer/:id      /
+/mycollection     /
+/collectfunko/:id     /
+/mywishlist     /
+/wishfunko/:id    /
