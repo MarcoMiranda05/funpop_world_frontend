@@ -36,10 +36,7 @@ class SignUpForm extends Component {
           text: `Something went wrong: ${data.error.join("! ")}`,
           type: "error",
           confirmButtonText: "okay",
-          animation: false,
-          customClass: {
-            popup: "tada"
-          }
+          animation: true
         });
       } else {
         Swal.fire({
