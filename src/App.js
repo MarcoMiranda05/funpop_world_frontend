@@ -233,19 +233,14 @@ class App extends Component {
           this.setState({
             wishlist: [data, ...this.state.wishlist]
           });
-          // Swal.fire({
-          //   title: "Cool!!!",
-          //   text: `You have add ${
-          //     this.state.selectedFunko.name
-          //   } to your wishlist!`,
-          //   type: "success",
-          //   imageUrl: `${this.state.selectedFunko.image_url}`,
-          //   imageWidth: 250,
-          //   imageHeight: 300,
-          //   imageAlt: "funko image",
-          //   showConfirmButton: false,
-          //   timer: 2500
-          // });
+          Swal.fire({
+            title: "Cool!!!",
+            text: `You have add ${
+              this.state.selectedFunko.name
+            } to your wishlist!`,
+            showConfirmButton: false,
+            timer: 2500
+          });
           this.props.history.push("/mypage");
         });
     }
