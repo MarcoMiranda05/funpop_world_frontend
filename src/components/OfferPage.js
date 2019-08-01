@@ -34,7 +34,7 @@ class OfferPage extends Component {
         data.outcoming_funko.funko.id
       );
       Swal.fire({
-        title: `Offer has been acceptd! Now you have ${
+        title: `Offer has been accepted! Now you have ${
           data.outcoming_funko.funko.name
         } in you collection!`,
         imageUrl: `${data.outcoming_funko.funko.name.image_url}`,
