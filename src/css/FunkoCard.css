@@ -133,8 +133,10 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 10px;
+  margin-left: 50%;
 }
 
 .clock {
   animation: rotate infinite 5s;
+  background-color: transparent;
 }
