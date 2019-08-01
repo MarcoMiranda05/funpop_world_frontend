@@ -33,45 +33,45 @@ class OfferPage extends Component {
         data.incoming_funko.user.id,
         data.outcoming_funko.funko.id
       );
-      Swal.fire({
-        title: "Amazing!!!",
-        text: `Offer has been acceptd! Now you have ${
-          data.outcoming_funko.funko.name
-        } in you collection!`,
-        type: "success",
-        imageUrl: `${data.outcoming_funko.funko.name.image_url}`,
-        imageWidth: 250,
-        imageHeight: 300,
-        imageAlt: "funko image",
-        showConfirmButtonText: false,
-        timer: 2500
-      });
+      // Swal.fire({
+      //   title: "Amazing!!!",
+      //   text: `Offer has been acceptd! Now you have ${
+      //     data.outcoming_funko.funko.name
+      //   } in you collection!`,
+      //   type: "success",
+      //   imageUrl: `${data.outcoming_funko.funko.name.image_url}`,
+      //   imageWidth: 250,
+      //   imageHeight: 300,
+      //   imageAlt: "funko image",
+      //   showConfirmButtonText: false,
+      //   timer: 2500
+      // });
       this.props.history.push("/");
     });
   };
 
   rejectOffer = () => {
     api.rejectOffer(this.state.offer.id).then(() => {
-      Swal.fire({
-        title: "Okay!!!",
-        text: `Offer has been rejected!`,
-        type: "success",
-        showConfirmButtonText: false,
-        timer: 1500
-      });
+      // Swal.fire({
+      //   title: "Okay!!!",
+      //   text: `Offer has been rejected!`,
+      //   type: "success",
+      //   showConfirmButtonText: false,
+      //   timer: 1500
+      // });
       this.props.history.push("/");
     });
   };
 
   cancelOffer = () => {
     api.rejectOffer(this.state.offer.id).then(() => {
-      Swal.fire({
-        title: "Okay!!!",
-        text: `Offer has been cancelled!`,
-        type: "success",
-        showConfirmButtonText: false,
-        timer: 1500
-      });
+      // Swal.fire({
+      //   title: "Okay!!!",
+      //   text: `Offer has been cancelled!`,
+      //   type: "success",
+      //   showConfirmButtonText: false,
+      //   timer: 1500
+      // });
       this.props.history.push("/");
     });
   };

@@ -209,7 +209,7 @@ class App extends Component {
           this.setState({
             collection: [data, ...this.state.collection]
           });
-          Swal.fire("Good job!", "You clicked the button!", "success");
+          // Swal.fire("Good job!", "You clicked the button!", "success");
           this.props.history.push("/mypage");
         });
     }
@@ -233,19 +233,19 @@ class App extends Component {
           this.setState({
             wishlist: [data, ...this.state.wishlist]
           });
-          Swal.fire({
-            title: "Cool!!!",
-            text: `You have add ${
-              this.state.selectedFunko.name
-            } to your wishlist!`,
-            type: "success",
-            imageUrl: `${this.state.selectedFunko.image_url}`,
-            imageWidth: 250,
-            imageHeight: 300,
-            imageAlt: "funko image",
-            showConfirmButton: false,
-            timer: 2500
-          });
+          // Swal.fire({
+          //   title: "Cool!!!",
+          //   text: `You have add ${
+          //     this.state.selectedFunko.name
+          //   } to your wishlist!`,
+          //   type: "success",
+          //   imageUrl: `${this.state.selectedFunko.image_url}`,
+          //   imageWidth: 250,
+          //   imageHeight: 300,
+          //   imageAlt: "funko image",
+          //   showConfirmButton: false,
+          //   timer: 2500
+          // });
           this.props.history.push("/mypage");
         });
     }
@@ -268,19 +268,19 @@ class App extends Component {
           this.setState({
             collection: [data, ...this.state.collection]
           });
-          Swal.fire({
-            title: "Cool!!!",
-            text: `You have add ${
-              this.state.selectedFunko.funko.name
-            } to your collection!`,
-            type: "success",
-            imageUrl: `${this.state.selectedFunko.name.image_url}`,
-            imageWidth: 250,
-            imageHeight: 300,
-            imageAlt: "funko image",
-            showConfirmButton: false,
-            timer: 2500
-          });
+          // Swal.fire({
+          //   title: "Cool!!!",
+          //   text: `You have add ${
+          //     this.state.selectedFunko.funko.name
+          //   } to your collection!`,
+          //   type: "success",
+          //   imageUrl: `${this.state.selectedFunko.name.image_url}`,
+          //   imageWidth: 250,
+          //   imageHeight: 300,
+          //   imageAlt: "funko image",
+          //   showConfirmButton: false,
+          //   timer: 2500
+          // });
           this.props.history.push("/mycollection");
         });
     });
@@ -311,13 +311,19 @@ class App extends Component {
       this.setState({ wishlist: newArray });
       Swal.fire({
         title: "Cool!!!",
-        text: `You have removed ${
-          this.state.selectedFunko.funko.name
-        } from your wishlist!`,
+        text: "You have removed a Funko from your wishlist",
         type: "success",
-        showConfirmButton: false,
-        timer: 1500
+        confirmButtonText: "okay"
       });
+      // Swal.fire({
+      //   title: "Cool!!!",
+      //   text: `You have removed ${
+      //     this.state.selectedFunko.funko.name
+      //   } from your wishlist!`,
+      //   type: "success",
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // });
       this.props.history.push("/mywishlist");
     });
   };
@@ -328,15 +334,15 @@ class App extends Component {
         remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
       );
       this.setState({ collection: newArray });
-      Swal.fire({
-        title: "Cool!!!",
-        text: `You have removed ${
-          this.state.selectedFunko.funko.name
-        } from your collection!`,
-        type: "success",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      // Swal.fire({
+      //   title: "Cool!!!",
+      //   text: `You have removed ${
+      //     this.state.selectedFunko.funko.name
+      //   } from your collection!`,
+      //   type: "success",
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // });
       this.props.history.push("/mycollection");
     });
   };
