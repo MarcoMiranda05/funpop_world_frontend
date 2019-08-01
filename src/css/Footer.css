@@ -6,7 +6,7 @@
   height: 70px;
   padding-top: 25px;
   padding-bottom: 10px;
-  background-color: #333333;
+  background-color: #333;
   text-align: center;
   z-index: 1;
 }
@@ -14,9 +14,11 @@
 .logo-footer {
   width: 35px;
   padding: 2px 10px 2px 10px;
+  background-color: #333;
 }
 
 .copyright {
   color: white;
-  font-size: 10px;
+  font-size: 15px;
+  background-color: #333;
 }
