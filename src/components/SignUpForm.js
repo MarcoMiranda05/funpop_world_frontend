@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { withRouter } from "react-router";
 import api from "../util/api";
+import Swal from "sweetalert2";
 
 class SignUpForm extends Component {
   state = {
@@ -30,9 +31,22 @@ class SignUpForm extends Component {
     const newUser = { user: { ...this.state } };
     api.createUser(newUser).then(data => {
       if (data.error) {
-        console.log(data.error);
-        alert(data.error.join("! "));
+        Swal.fire({
+          title: "Ooops...",
+          text: `Something went wrong: ${data.error.join("! ")}`,
+          type: "error",
+          confirmButtonText: "okay",
+          animation: false,
+          customClass: {
+            popup: "animated tada"
+          }
+        });
       } else {
+        Swal.fire({
+          title: "WELCOME TO FUNPOP! WORLD",
+          showConfirmButtonText: false,
+          timer: 1500
+        });
         localStorage.setItem("token", data.jwt);
         this.props.handleCurrentUser();
         this.props.history.push("/");

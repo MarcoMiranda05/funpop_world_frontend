@@ -23,6 +23,7 @@ import FunkosSearchResultContainer from "./containers/FunkosSearchResultContaine
 import FunkosToTradeContainer from "./containers/FunkosToTradeContainer";
 import FunkoToTradePage from "./components/FunkoToTradePage";
 import OfferPage from "./components/OfferPage";
+import Swal from "sweetalert2";
 
 class App extends Component {
   constructor() {
@@ -113,7 +114,12 @@ class App extends Component {
     e.preventDefault();
     api.login(this.state.username, this.state.password).then(data => {
       if (data.error) {
-        alert("something is wrong with your credentials");
+        Swal.fire({
+          title: "Ooops...",
+          text: "Something went wrong with your credentials",
+          type: "error",
+          confirmButtonText: "okay"
+        });
         this.setState({ username: "", password: "" });
       } else {
         localStorage.setItem("token", data.jwt);
@@ -187,8 +193,12 @@ class App extends Component {
 
   handleAddFunkoToCollection = () => {
     if (!this.state.loggedIn) {
-      alert("You need to be logged in to add a Funko!");
-      this.props.history.push("/");
+      Swal.fire({
+        title: "Ooops...",
+        text: "You need to be logged in to add a Funko!",
+        type: "error",
+        confirmButtonText: "okay"
+      });
     } else {
       api
         .addFunkoToCollection(
@@ -199,11 +209,15 @@ class App extends Component {
           this.setState({
             collection: [data, ...this.state.collection]
           });
-          alert(
-            `Amazing, you have add ${
+          Swal.fire({
+            title: "Cool!!!",
+            text: `Amazing, you have add ${
               this.state.selectedFunko.name
-            } to your collection!`
-          );
+            } to your collection!`,
+            type: "success",
+            showConfirmButtonText: false,
+            timer: 1500
+          });
           this.props.history.push("/mypage");
         });
     }
@@ -211,8 +225,12 @@ class App extends Component {
 
   handleAddFunkoToWishlist = () => {
     if (!this.state.loggedIn) {
-      alert("You need to be logged in to add a Funko!");
-      this.props.history.push("/");
+      Swal.fire({
+        title: "Ooops...",
+        text: "You need to be logged in to add a Funko!",
+        type: "error",
+        confirmButtonText: "okay"
+      });
     } else {
       api
         .addFunkoToWishlist(
@@ -223,11 +241,15 @@ class App extends Component {
           this.setState({
             wishlist: [data, ...this.state.wishlist]
           });
-          alert(
-            `Amazing, you have add ${
+          Swal.fire({
+            title: "Cool!!!",
+            text: `You have add ${
               this.state.selectedFunko.name
-            } to your wishlist!`
-          );
+            } to your wishlist!`,
+            type: "success",
+            showConfirmButtonText: false,
+            timer: 1500
+          });
           this.props.history.push("/mypage");
         });
     }
@@ -250,11 +272,15 @@ class App extends Component {
           this.setState({
             collection: [data, ...this.state.collection]
           });
-          alert(
-            `Amazing, you have add ${
+          Swal.fire({
+            title: "Cool!!!",
+            text: `You have add ${
               this.state.selectedFunko.funko.name
-            } to your collection!`
-          );
+            } to your collection!`,
+            type: "success",
+            showConfirmButtonText: false,
+            timer: 1500
+          });
           this.props.history.push("/mycollection");
         });
     });
@@ -283,11 +309,15 @@ class App extends Component {
         remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
       );
       this.setState({ wishlist: newArray });
-      alert(
-        `You have remove ${
+      Swal.fire({
+        title: "Cool!!!",
+        text: `You have removed ${
           this.state.selectedFunko.funko.name
-        } from your wishlist with success!`
-      );
+        } from your wishlist!`,
+        type: "success",
+        showConfirmButtonText: false,
+        timer: 1500
+      });
       this.props.history.push("/mywishlist");
     });
   };
@@ -298,11 +328,15 @@ class App extends Component {
         remainingFunkos => this.state.selectedFunko.id !== remainingFunkos.id
       );
       this.setState({ collection: newArray });
-      alert(
-        `You have remove ${
+      Swal.fire({
+        title: "Cool!!!",
+        text: `You have removed ${
           this.state.selectedFunko.funko.name
-        } from your collection with success!`
-      );
+        } from your collection!`,
+        type: "success",
+        showConfirmButtonText: false,
+        timer: 1500
+      });
       this.props.history.push("/mycollection");
     });
   };

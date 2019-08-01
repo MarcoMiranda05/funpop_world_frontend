@@ -42,10 +42,11 @@ class FunkoToTradePage extends Component {
           });
         } else {
           Swal.fire({
-            title: "Legen - wait for it - dary!",
+            title: "Cool!!!",
             text: "Your offer has been placed",
             type: "success",
-            confirmButtonText: "okay"
+            showConfirmButtonText: false,
+            timer: 1500
           });
           this.props.history.push("/");
         }
