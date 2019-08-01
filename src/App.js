@@ -215,7 +215,7 @@ class App extends Component {
               this.state.selectedFunko.name
             } to your collection!`,
             type: "success",
-            imageUrl: `${this.state.selectedFunko.imageUrl}`,
+            imageUrl: `${this.state.selectedFunko.image_url}`,
             imageWidth: 250,
             imageHeight: 300,
             imageAlt: "funko image",
