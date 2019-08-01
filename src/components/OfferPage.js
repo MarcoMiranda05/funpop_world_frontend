@@ -39,8 +39,12 @@ class OfferPage extends Component {
           data.outcoming_funko.funko.name
         } in you collection!`,
         type: "success",
+        imageUrl: `${data.outcoming_funko.funko.name.image_url}`,
+        imageWidth: 250,
+        imageHeight: 300,
+        imageAlt: "funko image",
         showConfirmButtonText: false,
-        timer: 1500
+        timer: 2500
       });
       this.props.history.push("/");
     });

@@ -220,7 +220,7 @@ class App extends Component {
             imageHeight: 300,
             imageAlt: "funko image",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2500
           });
           this.props.history.push("/mypage");
         });
@@ -251,8 +251,12 @@ class App extends Component {
               this.state.selectedFunko.name
             } to your wishlist!`,
             type: "success",
+            imageUrl: `${this.state.selectedFunko.image_url}`,
+            imageWidth: 250,
+            imageHeight: 300,
+            imageAlt: "funko image",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2500
           });
           this.props.history.push("/mypage");
         });
@@ -282,8 +286,12 @@ class App extends Component {
               this.state.selectedFunko.funko.name
             } to your collection!`,
             type: "success",
+            imageUrl: `${this.state.selectedFunko.name.image_url}`,
+            imageWidth: 250,
+            imageHeight: 300,
+            imageAlt: "funko image",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2500
           });
           this.props.history.push("/mycollection");
         });
